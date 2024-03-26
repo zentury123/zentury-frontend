@@ -1,0 +1,134 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+background-color: white;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+
+.linear{
+    font-size: 54px;
+    background: linear-gradient(#D3A86B, #A3784A); /* Standard linear gradient */
+    background-clip: text; /* Standard way of clipping the background to the text */
+    color: transparent; /* Sets the text color to transparent */
+}
+.gradient{
+  background: linear-gradient(#D3A86B, #A3784A); /* Standard linear gradient */
+  background-clip: text; /* Standard way of clipping the background to the text */
+  color: transparent; /* Sets the text color to transparent */
+}
+.MuiSlider-track{
+  color: black !important;
+}
+.MuiSlider-thumbColorPrimary{
+  color: white !important;
+}
+.MuiSlider-rail{
+  color: #F2F2F2 !important;
+}
+.my-scroller::-webkit-scrollbar{
+  display: none !important;
+}
+
+.rbc-day-bg,
+.rbc-off-range-bg{
+  background-color: unset !important;
+}
+.rbc-button-link{
+  color: white !important;
+}
+.rbc-event{
+  background-color: white !important;
+  color: black !important;
+  text-align: center !important;
+}
+
+
+
+@media (max-width:600px) {
+  .linear{
+    font-size: 44px;
+    background: linear-gradient(#D3A86B, #A3784A); /* Standard linear gradient */
+    background-clip: text; /* Standard way of clipping the background to the text */
+    color: transparent; /* Sets the text color to transparent */
+}
+}
+.rbc-active{
+  background-color: black !important;
+}
+.rbc-btn-group button{
+  color:  white !important;
+}
+
+.rbc-header span{
+  color: white !important;
+}
+
+
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 15px;
+  height: 15px;
+  background-color: white; /* Checkbox background color */
+  border: 1px solid #C7D5E1; /* Checkbox border color */
+  border-radius: 4px; /* Rounded corners */
+  outline: none; /* Remove outline */
+  cursor: pointer; /* Cursor on hover */
+  position: relative; /* Position relative for pseudo-element */
+}
+
+/* Custom checkbox when it's checked */
+input[type="checkbox"]:checked {
+  background-color: #007bff; /* Checked checkbox background color */
+}
+
+/* Inside checkmark */
+input[type="checkbox"]::after {
+  content: '\2713'; /* Unicode checkmark */
+  font-size: 14px; /* Size of the checkmark */
+  color: white; /* Checkmark color */
+  position: absolute; /* Position the checkmark */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Center the checkmark */
+  visibility: hidden; /* Initially hidden */
+}
+
+/* Show checkmark when checkbox is checked */
+input[type="checkbox"]:checked::after {
+  visibility: visible;
+}
+
+/* Style for the checkbox label */
+.checkbox-label {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  color: #333;
+  margin-left: 5px;
+}
