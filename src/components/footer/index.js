@@ -6,10 +6,10 @@ import Register from "../registerModal";
 import ResetPassword from "../resetPassword";
 import VerificationCode from "../verificationCode";
 import UpdatePassword from "../password";
-
+import { useSession } from "next-auth/react";
 export default function Footer() {
   const router = useRouter();
-
+  const { data: session, status } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -55,6 +55,8 @@ export default function Footer() {
   const closeModalUpdatePassword = () => {
     setUpdatePassword(false);
   };
+
+  console.log(`${JSON.stringify(session?.user)} this is user`);
   return (
     <div>
       <div className="xl:pl-[75px] pl-[30px] xl:pr-[68px] pr-[30px] pt-[81px] pb-[22px] bg-[#010101]  text-white">
@@ -131,18 +133,23 @@ export default function Footer() {
             >
               Obchodné podmienky
             </p>
-            <p
-              onClick={() => setIsOpen(true)}
-              className="leading-[24px] font-[400] text-white mt-[16px] hover:text-[#D3A86B] cursor-pointer"
-            >
-              Prihlásiť sa
-            </p>
-            <p
-              onClick={() => setIsRegister(true)}
-              className="leading-[24px] font-[400] text-white mt-[16px] hover:text-[#D3A86B] cursor-pointer"
-            >
-              Registrácia
-            </p>
+            {!session?.user?.accessToken && (
+              <>
+                {" "}
+                <p
+                  onClick={() => setIsOpen(true)}
+                  className="leading-[24px] font-[400] text-white mt-[16px] hover:text-[#D3A86B] cursor-pointer"
+                >
+                  Prihlásiť sa
+                </p>
+                <p
+                  onClick={() => setIsRegister(true)}
+                  className="leading-[24px] font-[400] text-white mt-[16px] hover:text-[#D3A86B] cursor-pointer"
+                >
+                  Registrácia
+                </p>
+              </>
+            )}
           </div>
           <div className="lg:col-span-3 sm:col-span-4 col-span-12 sm:pl-5 mt-[50px] lg:hidden">
             <p className="text-[18px] text-white font-semibold hover:text-[#D3A86B] cursor-pointer">

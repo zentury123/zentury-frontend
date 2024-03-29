@@ -1,5 +1,6 @@
 "use client";
-import ActionCenter from "@/components/actionCenter";
+//import ActionCenter from "@/components/actionCenter";
+import ActionCenter from "../components/actionCenter";
 import Articals from "@/components/articals";
 import ContactUs from "@/components/contact-us";
 import Footer from "@/components/footer";

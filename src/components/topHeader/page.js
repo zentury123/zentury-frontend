@@ -7,12 +7,13 @@ import ResetPassword from "../resetPassword";
 import VerificationCode from "../verificationCode";
 import UpdatePassword from "../password";
 import Drawer from "../drawer.js";
+import { useSession, signOut } from "next-auth/react";
 
 export default function TopHeader() {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   const [drawer, setDrawer] = useState(false);
-
+  const { data: session } = useSession();
   const [isOpen, setIsOpen] = useState(false);
 
   const openModal = () => {
@@ -290,20 +291,31 @@ export default function TopHeader() {
                 ) : (
                   <div className="flex items-center w-[400px]">
                     <img src="/group-165.svg" alt="" />
+
                     <p className="font-semibold ml-[11px] cursor-pointer">
-                      <span
-                        className="hover:text-[#D3A86B] text-white"
-                        onClick={() => openModal()}
-                      >
-                        {" "}
-                        Prihlásenie{" "}
-                      </span>{" "}
-                      <span
-                        className="hover:text-[#D3A86B] ml-3 text-white"
-                        onClick={() => openModalRegister()}
-                      >
-                        Registrácia
-                      </span>
+                      {!session?.user?.accessToken ? (
+                        <span
+                          className="hover:text-[#D3A86B] text-white"
+                          onClick={() => openModal()}
+                        >
+                          Prihlásenie
+                        </span>
+                      ) : (
+                        <span
+                          className="hover:text-[#D3A86B] text-white"
+                          onClick={() => signOut({ callbackUrl: "/" })}
+                        >
+                          Odhlásiť
+                        </span>
+                      )}
+                      {!session?.user?.accessToken && (
+                        <span
+                          className="hover:text-[#D3A86B] ml-3 text-white"
+                          onClick={() => openModalRegister()}
+                        >
+                          Registrácia
+                        </span>
+                      )}
                     </p>
                   </div>
                 )}
