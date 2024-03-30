@@ -1,13 +1,31 @@
 "use client";
-import React, { useState } from "react";
-
+import React, { useRef, useState } from "react";
+import useResetPassword from "@/customHooks/useResetPassword";
 const VerificationCode = ({
   isOpen,
   onClose,
   setIsOpen,
   setUpdatePassword,
 }) => {
-  const [show, setShow] = useState(false);
+  const formRef = useRef(null);
+  const { loading, resetUserPassword } = useResetPassword();
+  const [passwordError, setPasswordError] = useState(false);
+  const handleUpdatePassword = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    const code = formData.get("code");
+    const password = formData.get("password");
+    const confirmPassword = formData.get("confirmPassword");
+    if (password !== confirmPassword) {
+      setPasswordError(true);
+    } else {
+      try {
+        await resetUserPassword(code, password, confirmPassword);
+
+        onClose();
+      } catch (error) {}
+    }
+  };
   return (
     <>
       {isOpen && (
@@ -42,47 +60,53 @@ const VerificationCode = ({
                 Na Váš email sme zaslali unikátny verifikačný kód
               </p>
             </div>
-            <div className="sm:mt-[38px] mt-[20px]">
-              <input
-                type="text"
-                placeholder="Verifikačný kód"
-                className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black"
-              />
+            <form ref={formRef} onSubmit={handleUpdatePassword}>
+              <div className="sm:mt-[38px] mt-[20px]">
+                <input
+                  required
+                  name="code"
+                  type="text"
+                  placeholder="Verifikačný kód"
+                  className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black"
+                />
 
-<input
-                type="text"
-                placeholder="Nové heslo"
-                className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[17px]"
-              />
-              <input
-                type="text"
-                placeholder="Zopakujte nové heslo"
-                className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[17px]"
-              />
-              <div
-                onClick={() => {
-                  setUpdatePassword(true);
-                  onClose();
-                }}
-                className="text-white flex cursor-pointer justify-center items-center h-[59px] w-[100%] bg-gradient-to-b from-[#D3A86B] rounded-[18px] mt-[18px] to-[#A3784A] font-semibold"
-              >
-                Zmeniť heslo
+                <input
+                  type="text"
+                  name="password"
+                  placeholder="Nové heslo"
+                  className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[17px]"
+                />
+                <input
+                  type="text"
+                  name="confirmPassword"
+                  placeholder="Zopakujte nové heslo"
+                  className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[17px]"
+                />
+                {passwordError && (
+                  <p className=" text-sm text-[red] my-1">Heslá sa nezhodujú</p>
+                )}
+                <button
+                  type="submit"
+                  className="text-white flex cursor-pointer justify-center items-center h-[59px] w-[100%] bg-gradient-to-b from-[#D3A86B] rounded-[18px] mt-[18px] to-[#A3784A] font-semibold"
+                >
+                  {loading ? "resetovanie hesla" : "Zmeniť heslo"}
+                </button>
+                <div className="mt-[31px] pb-[20px]">
+                  <p className="text-black text-center cursor-pointer">
+                    Späť na &nbsp;
+                    <span
+                      className="text-[#D3A86B] cursor-pointer underline"
+                      onClick={() => {
+                        onClose();
+                        setIsOpen(true);
+                      }}
+                    >
+                      prihlásenie
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div className="mt-[31px] pb-[20px]">
-                <p className="text-black text-center cursor-pointer">
-                  Späť na &nbsp;
-                  <span
-                    className="text-[#D3A86B] cursor-pointer underline"
-                    onClick={() => {
-                      onClose();
-                      setIsOpen(true);
-                    }}
-                  >
-                    prihlásenie
-                  </span>
-                </p>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       )}
