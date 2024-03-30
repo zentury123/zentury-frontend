@@ -1,5 +1,6 @@
 import { Jost } from "next/font/google";
 import "./globals.css";
+import "sweetalert2/src/sweetalert2.scss";
 
 const jost = Jost({ subsets: ["latin-ext"] });
 import { NextAuthProvider } from "@/provider/NextAuthProvider";

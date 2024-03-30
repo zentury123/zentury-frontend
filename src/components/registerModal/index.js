@@ -8,7 +8,7 @@ const Register = ({ isOpen, onClose, setIsOpen }) => {
   const formRef = useRef(null);
   const [passwordError, setPasswordError] = useState(false);
   const { loading, registerUser } = useRegisterUser();
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
     const firstName = formData.get("name");
@@ -19,7 +19,7 @@ const Register = ({ isOpen, onClose, setIsOpen }) => {
     if (password !== confirmPassword) {
       setPasswordError(true);
     } else {
-      registerUser({ firstName, email, password, lastName });
+      await registerUser({ firstName, email, password, lastName });
       onClose();
     }
   };
@@ -177,16 +177,14 @@ const Register = ({ isOpen, onClose, setIsOpen }) => {
                   )}
                 </div>
                 {passwordError && (
-                  <p className=" text-sm text-[red] my-1">
-                    Passwords don't match
-                  </p>
+                  <p className=" text-sm text-[red] my-1">Heslá sa nezhodujú</p>
                 )}
 
                 <button
                   className="cursor-pointer text-white flex justify-center items-center h-[59px] w-[100%] bg-gradient-to-b from-[#D3A86B] rounded-[18px] mt-[43px] to-[#A3784A] font-semibold"
                   type="submit"
                 >
-                  {loading ? "Loading" : "Vytvoriť účet"}
+                  {loading ? "registrácia" : "Vytvoriť účet"}
                 </button>
                 <div className="mt-[31px] pb-[20px]">
                   <p

@@ -1,13 +1,14 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { signIn } from "next-auth/react";
-
+import { useSession } from "next-auth/react";
+import { Toast } from "@/components/Toaster";
 const Login = ({ isOpen, onClose, forgotPassword, setIsRegister }) => {
-
+  const { status } = useSession();
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
-  
+
   const handleSignIn = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
@@ -20,11 +21,18 @@ const Login = ({ isOpen, onClose, forgotPassword, setIsRegister }) => {
         password,
         redirect: false,
       });
+      if (status === "unauthenticated") {
+        Toast.fire({ icon: "error", title: "Nesprávny e-mail alebo heslo" });
+      } else {
+        onClose();
+      }
     } catch (error) {
-      alert("Invalid email or password");
+      Toast.fire({
+        icon: "error",
+        title: "Nesprávny e-mail alebo heslo",
+      });
     }
     setLoading(false);
-    onClose();
   };
 
   return (
@@ -67,12 +75,14 @@ const Login = ({ isOpen, onClose, forgotPassword, setIsRegister }) => {
                 <input
                   type="text"
                   name="email"
+                  required
                   placeholder="Váš email"
                   className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black"
                 />
                 <div className="relative">
                   <input
                     name="password"
+                    required
                     type={show ? "text" : "password"}
                     placeholder="Heslo"
                     className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[19px]"

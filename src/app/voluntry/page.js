@@ -6,10 +6,97 @@ import Pagination from "@/components/pagination/page";
 import TopHeader from "@/components/topHeader/page";
 import React, { useEffect, useRef, useState } from "react";
 import Slider from "@mui/material/Slider";
+import { Select } from "@mui/material";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader";
-
+import Euro from "../../../public/euro.svg";
+import useGetRealState from "@/customHooks/useGetRealState";
+const region = [
+  "Bratislava",
+  "Košice",
+  "Petržalka",
+  "Žilina",
+  "Prešov",
+  "Nitra",
+  "Banská Bystrica",
+  "Trnava",
+  "Trenčín",
+  "Martin",
+  "Poprad",
+  "Prievidza",
+  "Zvolen",
+  "Považská Bystrica",
+  "Michalovce",
+  "Nové Zámky",
+  "Spišská Nová Ves",
+  "Humenné",
+  "Komárno",
+  "Liptovský Mikuláš",
+  "Bardejov",
+  "Levice",
+  "Lučenec",
+  "Piešťany",
+  "Ružomberok",
+  "Topoľčany",
+  "Pezinok",
+  "Trebišov",
+  "Čadca",
+  "Dubnica nad Váhom",
+  "Rimavská Sobota",
+  "Dunajská Streda",
+  "Partizánske",
+  "Vranov nad Topľou",
+  "Šaľa",
+  "Hlohovec",
+  "Brezno",
+  "Senica",
+  "Nové Mesto nad Váhom",
+  "Senec",
+  "Snina",
+  "Žiar nad Hronom",
+  "Malacky",
+  "Rožňava",
+  "Dolný Kubín",
+  "Bánovce nad Bebravou",
+  "Púchov",
+  "Handlová",
+  "Kežmarok",
+  "Stará Ľubovňa",
+  "Sered’",
+  "Skalica",
+  "Kysucké Nové Mesto",
+  "Galanta",
+  "Detva",
+  "Levoča",
+  "Šamorín",
+  "Sabinov",
+  "Veľký Krtíš",
+  "Stupava",
+  "Revúca",
+  "Nová Dubnica",
+  "Zlaté Moravce",
+  "Myjava",
+  "Moldava nad Bodvou",
+  "Bytča",
+  "Svidník",
+  "Holíč",
+  "Fiľakovo",
+  "Štúrovo",
+  "Stropkov",
+  "Kolárovo",
+  "Banská Štiavnica",
+  "Šurany",
+  "Modra",
+  "Tvrdošín",
+  "Veľké Kapušany",
+  "Krompachy",
+  "Bernolákovo",
+  "Stará Turá",
+  "Veľký Meder",
+  "Vráble",
+  "Smižany",
+];
 export default function Voluntry() {
   const arrayData = [
     {
@@ -141,27 +228,30 @@ export default function Voluntry() {
       date: "15.02.2024",
     },
   ];
+
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const [selectedRegion, setSelectedRegion] = useState(null);
+  const [propertyType, setPropertyType] = useState(null);
+  const [auctionType, setAuctionType] = useState(null);
+  const [pageNumber, setPageNumber] = useState(1);
+  const handleRegionChange = (selectedOption) => {
+    setSelectedRegion(selectedOption);
+  };
 
+  const [keywords, setKeyWords] = useState("");
+  const [priceRange, setPriceRange] = useState(1000000);
+
+  const handlePropertyTypeChange = (selectedOption) => {
+    setPropertyType(selectedOption);
+  };
+  const handleAuctionTypeChange = (selectedOption) => {
+    setAuctionType(selectedOption);
+  };
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-  const [isOpen1, setIsOpen1] = useState(false);
 
-  const toggleMenu1 = () => {
-    setIsOpen1(!isOpen1);
-  };
-  const [isOpen2, setIsOpen2] = useState(false);
-
-  const toggleMenu2 = () => {
-    setIsOpen2(!isOpen2);
-  };
-  const [isOpen3, setIsOpen3] = useState(false);
-
-  const toggleMenu3 = () => {
-    setIsOpen3(!isOpen3);
-  };
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => setLoading(false), 1400);
@@ -169,6 +259,26 @@ export default function Voluntry() {
   if (loading) {
     return <Loader />;
   }
+
+  // const { data, loading: realStateLoading } = useGetRealState(
+  //   keywords,
+  //   priceRange,
+  //   region,
+  //   propertyType,
+  //   auctionType,
+  //   pageNumber
+  // );
+
+  // useEffect(() => {
+  //   getRealStates(
+  //     keywords,
+  //     priceRange,
+  //     region,
+  //     propertyType,
+  //     auctionType,
+  //     pageNumber
+  //   );
+  // }, [pageNumber, keywords, priceRange, propertyType, auctionType]);
   return (
     <div className="bg-white min-h-[100vh]">
       <TopHeader />
@@ -236,6 +346,7 @@ export default function Voluntry() {
             className="bg-[#F9FCFF] border border-[#C7D5E1] indent-4 w-[280px] h-[49px] rounded-[18px] mr-[17px] mt-3"
             type="text"
             placeholder="Kĺúčové slovo"
+            onChange={(e) => setKeyWords(e.target.value)}
           />
           <div>
             <div
@@ -243,20 +354,6 @@ export default function Voluntry() {
               className=" w-[98px] mr-[17px] mt-3  h-[49px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
             >
               <p>Cena</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-6 ml-[10px]"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
             </div>
             <div
               className={`fixed ${
@@ -274,6 +371,10 @@ export default function Voluntry() {
                   <Slider
                     defaultValue={50}
                     aria-label="Default"
+                    min={0}
+                    max={1000000}
+                    step={5000}
+                    onChange={(value) => setPriceRange(value)}
                     valueLabelDisplay="auto"
                     className="slider-class"
                   />
@@ -282,140 +383,45 @@ export default function Voluntry() {
               </div>
             )}
           </div>
+
+          <select
+            placeholder="Kraj"
+            value={selectedRegion}
+            className="w-[150px] mr-[17px] p-[10px] mt-3 h-[50px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
+            onChange={(e) => handleRegionChange(e.target.value)}
+          >
+            <option value="Kraj">Kraj</option>
+            {region.map((area, index) => (
+              <option value={area} key={index}>
+                {area}
+              </option>
+            ))}
+          </select>
+
           <div className="relative">
-            <div
-              onClick={toggleMenu1}
-              className=" w-[98px] mr-[17px] mt-3 h-[49px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
+            <select
+              placeholder="Typ nehnuteľnosti"
+              value={propertyType}
+              className="w-[175px] mr-[17px] p-[10px] mt-3 h-[50px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
+              onChange={(e) => handlePropertyTypeChange(e.target.value)}
             >
-              <p>Kraj</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-6 ml-[20px]"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-              <div
-                className={`fixed ${
-                  isOpen1 ? "block" : "hidden"
-                } top-0 left-0 w-full h-full bg-black opacity-0 z-10`}
-                onClick={() => setIsOpen1(false)}
-              ></div>
-              {isOpen1 && (
-                <div className="absolute top-12 mt-2 bg-white border rounded shadow-lg z-10 px-[20px] w-[250px]">
-                  <div className="flex justify-between mt-[16px]">
-                    <p className="text-[12px] text-[#848484]">0 €</p>
-                    <p className="text-[12px] text-[#848484]">1 000 000 €</p>
-                  </div>
-                  <Box sx={{ width: "100%" }}>
-                    <Slider
-                      defaultValue={50}
-                      aria-label="Default"
-                      valueLabelDisplay="auto"
-                      className="slider-class"
-                    />
-                  </Box>
-                  <p className="text-[12px] text-[#000000] pb-[20px]">Uložiť</p>
-                </div>
-              )}
-            </div>
+              <option value="">Typ nehnuteľnosti</option>
+
+              <option value={"type1"}> Dom</option>
+              <option value={"type2"}> Byt</option>
+            </select>
           </div>
           <div className="relative">
-            <div
-              onClick={toggleMenu2}
-              className=" w-[187px] mr-[17px] mt-3 h-[49px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
+            <select
+              placeholder="Dražba"
+              value={auctionType}
+              className="w-[150px] mr-[17px] p-[10px] mt-3 h-[50px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
+              onChange={(e) => handleAuctionTypeChange(e.target.value)}
             >
-              <p>Typ nehnuteľnosti</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-6 ml-[20px]"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-              <div
-                className={`fixed ${
-                  isOpen2 ? "block" : "hidden"
-                } top-0 left-0 w-full h-full bg-black opacity-0 z-10`}
-                onClick={() => setIsOpen2(false)}
-              ></div>
-              {isOpen2 && (
-                <div className="absolute top-12 mt-2 bg-white border rounded shadow-lg z-10 px-[20px] w-[250px]">
-                  <div className="flex justify-between mt-[16px]">
-                    <p className="text-[12px] text-[#848484]">0 €</p>
-                    <p className="text-[12px] text-[#848484]">1 000 000 €</p>
-                  </div>
-                  <Box sx={{ width: "100%" }}>
-                    <Slider
-                      defaultValue={50}
-                      aria-label="Default"
-                      valueLabelDisplay="auto"
-                      className="slider-class"
-                    />
-                  </Box>
-                  <p className="text-[12px] text-[#000000] pb-[20px]">Uložiť</p>
-                </div>
-              )}
-            </div>
-          </div>
-          <div className="relative">
-            <div
-              onClick={toggleMenu3}
-              className=" w-[112px] mr-[17px] mt-3 h-[49px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
-            >
-              <p>Dražba</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-4 h-6 ml-[20px]"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="m19.5 8.25-7.5 7.5-7.5-7.5"
-                />
-              </svg>
-              <div
-                className={`fixed ${
-                  isOpen3 ? "block" : "hidden"
-                } top-0 left-0 w-full h-full bg-black opacity-0 z-10`}
-                onClick={() => setIsOpen3(false)}
-              ></div>
-              {isOpen3 && (
-                <div className="absolute top-12 mt-2 bg-white border rounded shadow-lg z-10 px-[20px] w-[250px]">
-                  <div className="flex justify-between mt-[16px]">
-                    <p className="text-[12px] text-[#848484]">0 €</p>
-                    <p className="text-[12px] text-[#848484]">1 000 000 €</p>
-                  </div>
-                  <Box sx={{ width: "100%" }}>
-                    <Slider
-                      defaultValue={50}
-                      aria-label="Default"
-                      valueLabelDisplay="auto"
-                      className="slider-class"
-                    />
-                  </Box>
-                  <p className="text-[12px] text-[#000000] pb-[20px]">Uložiť</p>
-                </div>
-              )}
-            </div>
+              <option value="">Dražba</option>
+              <option value={"type1"}>Prvá</option>
+              <option value={"type2"}> Opakovaná</option>
+            </select>
           </div>
         </div>
         <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
