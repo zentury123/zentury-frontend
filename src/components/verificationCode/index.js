@@ -49,6 +49,16 @@ const VerificationCode = ({
                 className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black"
               />
 
+<input
+                type="text"
+                placeholder="Nové heslo"
+                className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[17px]"
+              />
+              <input
+                type="text"
+                placeholder="Zopakujte nové heslo"
+                className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black mt-[17px]"
+              />
               <div
                 onClick={() => {
                   setUpdatePassword(true);

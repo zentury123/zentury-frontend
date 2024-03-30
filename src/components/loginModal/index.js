@@ -1,11 +1,13 @@
 "use client";
 import React, { useState, useRef } from "react";
 import { signIn } from "next-auth/react";
-import { Niconne } from "next/font/google";
+
 const Login = ({ isOpen, onClose, forgotPassword, setIsRegister }) => {
+
   const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const formRef = useRef(null);
+  
   const handleSignIn = async (e) => {
     e.preventDefault();
     const formData = new FormData(formRef.current);
