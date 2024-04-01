@@ -1,16 +1,29 @@
 
 import React from 'react'
-import { APIPrefix } from '@/api'
-import axios from 'axios'
+import { Axios } from "../../customHooks/AxiosData";
+import ContactUs from '@/components/contact-us';
+import Footer from '@/components/footer';
+import TopHeader from '@/components/topHeader/page';
+import Navigation from "@/components/navigation/page";
+
+
 
 export default async function VerifyEmail({ searchParams }) {
 
-  const res = await axios.get(`${APIPrefix}/auth/verify?code=${searchParams.code}`)
+  const res = await Axios.get(`/api/auth/verify?code=${searchParams.verifyCode}`)
 
 
   return (
-    <div className=' flex justify-center items-center h-[500px]'>
-      <h1 className=' md:block font-oswald text-primary  text-[26px] lg:text-[50px] font-bold'>Your Account Has Been Created Successfully.</h1>
-    </div>
+    <>
+      <TopHeader />
+      <Navigation />
+      <div className=' flex justify-center items-center h-[500px]'>
+        <h1 className=' block text-center text-[#D3A86B]  text-[26px] lg:text-[50px] font-bold'>Your Account Has Been Created Successfully.</h1>
+      </div>
+      <div className="mt-[89px]">
+        <ContactUs />
+        <Footer />
+      </div>
+    </>
   )
 }

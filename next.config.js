@@ -7,7 +7,7 @@
 const path = require("path");
 
 const nextConfig = {
-  //Sass config
+ reactStrictMode: false,
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
     session: {
