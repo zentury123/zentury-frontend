@@ -26,7 +26,7 @@ export const authOptions = {
           }
         );
 
-        console.log(response?.data?.result + "this is token");
+        // console.log(response?.data?.result + "this is token");
         if (response?.data.result?.accessToken) {
           return response?.data?.result;
         } else {
@@ -69,8 +69,6 @@ export const authOptions = {
         token.accessToken = user.accessToken;
         token.isVerified = user.isVerified;
         token.name = `${user.firstName} ${user.lastName}`;
-        console.log(token);
-        console.log("token");
       }
       return Promise.resolve(token);
     },
@@ -81,8 +79,7 @@ export const authOptions = {
         session.user.accessToken = token.accessToken;
         session.user.isVerified = token.isVerified;
         session.user.email = token.email;
-        console.log(session);
-        console.log("session in");
+
         return session;
       }
     },

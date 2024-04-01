@@ -16,12 +16,13 @@ const Login = ({ isOpen, onClose, forgotPassword, setIsRegister }) => {
     const password = formData.get("password");
     setLoading(true);
     try {
-      await signIn("credentials", {
+      const session = await signIn("credentials", {
         email,
         password,
         redirect: false,
       });
-      if (status === "unauthenticated") {
+      //session.ok === true if the login happens successfully
+      if (!session?.ok) {
         Toast.fire({ icon: "error", title: "Nesprávny e-mail alebo heslo" });
       } else {
         onClose();
