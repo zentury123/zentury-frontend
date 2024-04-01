@@ -34,15 +34,13 @@ export default function Home() {
   }
   return (
     <div className="text-white bg-white min-h-[100vh] relative">
-      <TopHeader />
-      <Navigation />
+
       <HeroBanner openModalVideo={openModalVideo} />
       <ActionCenter openModalVideo={openModalVideo} />
       <OurServices />
       <Partners />
       <Articals />
-      <ContactUs />
-      <Footer />
+
       <VideoModal isOpen={isVideo} onClose={closeModalVideo} />
     </div>
   );

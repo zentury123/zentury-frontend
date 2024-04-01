@@ -351,7 +351,7 @@ function SearchContent() {
               value={auctionType}
               className="w-[150px] mr-[17px] p-[10px] mt-3 h-[50px] cursor-pointer rounded-[18px] bg-[#F9FCFF] border border-[#C7D5E1] flex justify-center items-center"
               onChange={handleAuctionTypeChange}>
-              <option value="">all</option>
+              <option value="">All</option>
             
               <option value="Dražba">Dražba</option>
               <option value={"Prvá"}>Prvá</option>
