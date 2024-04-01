@@ -89,10 +89,10 @@ export default function TopHeader() {
               src="/check.svg"
               alt=""
               className={`w-[20px] h-[15px] mr-[25px] ${
-                // location?.pathname === "/register-for" ||
-                // location?.pathname === "/my-account"
-                "block"
-                // : "hidden"
+                location.pathname === "/register-for" ||
+                location.pathname === "/my-account"
+                  ? "block"
+                  : "hidden"
               } `}
               onClick={() => router.push("/register-for")}
             />
@@ -100,10 +100,10 @@ export default function TopHeader() {
               src="/Vector (2).svg"
               alt=""
               className={`w-[19px] h-[21px] mr-[25px] ${
-                // location?.pathname === "/register-for" ||
-                // location?.pathname === "/my-account"
-                "block"
-                // : "hidden"
+                location.pathname === "/register-for" ||
+                location.pathname === "/my-account"
+                  ? "block"
+                  : "hidden"
               } `}
               onClick={() => router.push("/my-account")}
             />
