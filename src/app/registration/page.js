@@ -18,8 +18,7 @@ export default function Registration() {
   }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[190px] mt-[90px] text-black px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold text-center leading-[48px]">
           Názov nehnuteľnosti v dražbe
@@ -232,9 +231,7 @@ export default function Registration() {
           </div>
         </div>
       </div>
-      <div className="mt-[89px]">
-        <Footer />
-      </div>
+
     </div>
   );
 }

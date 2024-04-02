@@ -26,8 +26,7 @@ export const CalendarPage = () => {
 
   return (
     <div className="bg-[white] min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[200px] mt-[90px] xl:px-[75px] px-[24px]">
         <p className="text-black font-semibold lg:text-[40px] text-[25px]">
           Dražobný kalendár
@@ -60,10 +59,7 @@ export const CalendarPage = () => {
           </div>
         </div>
       </div>
-      <div>
-        <ContactUs />
-        <Footer />
-      </div>
+
     </div>
   );
 };

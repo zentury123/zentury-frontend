@@ -16,8 +16,7 @@ export default function MyAccount() {
   }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[200px] mt-[90px] text-black px-[24px]">
         <p className="lg:text-[40px] text-[24px] font-[600] text-center ">
           Môj účet
@@ -74,9 +73,7 @@ export default function MyAccount() {
           </div>
         </div>
       </div>
-      <div className="mt-[133px]">
-        <Footer />
-      </div>
+
     </div>
   );
 }

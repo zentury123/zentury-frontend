@@ -1,12 +1,9 @@
 "use client";
 
-import ContactUs from "@/components/contact-us";
-import Footer from "@/components/footer";
-import Navigation from "@/components/navigation/page";
-import TopHeader from "@/components/topHeader/page";
+
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { Axios } from "../../customHooks/AxiosData";
+
 
 export default function OneAction() {
   const router = useRouter();

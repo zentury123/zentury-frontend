@@ -460,10 +460,7 @@ export default function DirectSale() {
         </div> */}
         {/* <Pagination /> */}
       </div>
-      <div className="mt-[89px]">
-        <ContactUs />
-        <Footer />
-      </div>
+
     </div>
   );
 }

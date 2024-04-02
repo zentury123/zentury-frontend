@@ -15,8 +15,7 @@ export default function Povinnosti() {
   }
   return (
     <div className="bg-white min-h-[100vh] ">
-      <TopHeader />
-      <Navigation />
+
       <div className="pb-[127px] lg:pt-[127px] mt-[90px] xl:px-[105px] px-[30px] text-black">
         <p className="lg:text-[40px] text-[25px] text-black font-[600]">
           Informácie pre dlžníkov
@@ -42,7 +41,7 @@ export default function Povinnosti() {
           Sme tu pre vás každý pracovný deň od 8:00 do 17:00 hod.
         </p>
       </div>
-      <Footer />
+
     </div>
   );
 }

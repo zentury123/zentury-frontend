@@ -59,8 +59,7 @@ export default function RegisterFor() {
   }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
+
       <div className="text-black lg:mt-[200px] mt-[90px] xl:px-[75px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold">
           Dražby, na ktoré som prihlásený
@@ -101,9 +100,7 @@ export default function RegisterFor() {
         </div>
         <Pagination />
       </div>
-      <div className="mt-[111px]">
-        <Footer />
-      </div>
+
     </div>
   );
 }

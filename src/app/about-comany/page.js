@@ -17,8 +17,7 @@ export default function CompanyAbout() {
   }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[187px] mt-[90px] xl:px-[105px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] text-black font-semibold">
           O spoločnosti
@@ -87,8 +86,7 @@ export default function CompanyAbout() {
           </div>
         </div>
       </div>
-      <ContactUs />
-      <Footer />
+
     </div>
   );
 }

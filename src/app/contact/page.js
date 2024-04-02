@@ -16,8 +16,7 @@ export default function Contact() {
   }
   return (
     <div className="min-h-[100vh] bg-white">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[187px] mt-[90px] lg:px-[105px] px-[17px]">
         <p className="lg:text-[40px] text-[25px] text-black font-semibold ">
           Kontakt
@@ -144,9 +143,6 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="mt-[124px]">
-        <Footer />
-      </div>
     </div>
   );
 }

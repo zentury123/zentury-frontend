@@ -16,8 +16,7 @@ export default function About() {
   }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[180px] mt-[90px] xl:px-[105px] px-[30px]">
         <p className="lg:text-[40px] text-[25px] font-semibold text-black">
           O dražbách
@@ -185,8 +184,6 @@ export default function About() {
           </p>
         </div>
       </div>
-      <ContactUs />
-      <Footer />
     </div>
   );
 }
