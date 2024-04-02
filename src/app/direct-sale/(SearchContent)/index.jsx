@@ -368,7 +368,9 @@ function SearchContent() {
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
         {data.map((item) => (
           <div
-            onClick={() => router.push("/one-action")}
+            onClick={() =>
+              router.push(`direct-sale/${item?.slug}` || "/one-action")
+            }
             className="p-[12px] bg-[#F9FCFF] border border-[#C7D5E1] rounded-[18px] cursor-pointer"
           >
             <div className="relative">

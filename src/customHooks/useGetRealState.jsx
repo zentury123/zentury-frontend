@@ -3,7 +3,7 @@ import { Axios } from "./AxiosData";
 import { Toaster } from "@/components/Toaster";
 
 const useGetRealState = (
-  key = "auction",
+  key,
   priceRange = 1000000,
   region = "",
   typeOfRealEstate = "",
@@ -35,7 +35,15 @@ const useGetRealState = (
     };
 
     fetchData();
-  }, [key, priceRange, region, typeOfRealEstate, typeOfAuction, page,keywords]);
+  }, [
+    key,
+    priceRange,
+    region,
+    typeOfRealEstate,
+    typeOfAuction,
+    page,
+    keywords,
+  ]);
 
   return { data, loading };
 };
