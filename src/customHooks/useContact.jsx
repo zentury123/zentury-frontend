@@ -3,18 +3,17 @@ import { Axios } from "./AxiosData";
 import { Toast } from "../components/Toaster";
 import Error from "next/error";
 
-const useForgotPassword = () => {
+const useContact = () => {
   const [loading, setLoading] = useState(false);
-  const sendVerificationEmail = async (email) => {
+  const sendContactQuery = async (data) => {
     try {
       setLoading(true);
-      await Axios.post("/api/auth/forget-password", { email });
+      await Axios.post("/api/support/contact", { ...data });
       Toast.fire({
         icon: "success",
-        title: "overovací kód odoslaný na vašu email adresu",
+        title: "Žiadosť odoslaná",
       });
     } catch (error) {
-      console.log(email);
       Toast.fire({
         icon: "error",
         title: "Niečo sa pokazilo",
@@ -25,7 +24,7 @@ const useForgotPassword = () => {
     }
   };
 
-  return { sendVerificationEmail, loading };
+  return { sendContactQuery, loading };
 };
 
-export default useForgotPassword;
+export default useContact;
