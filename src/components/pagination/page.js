@@ -39,7 +39,7 @@ const Pagination = ({ currentPage, totalPages, limit, setPageNumber }) => {
   const handlePageClick = (newPage) => {
     setPageNumber(newPage);
   };
-
+console.log(totalPages)
   return (
     <nav className="pagination-container">
       <ul className="pagination">

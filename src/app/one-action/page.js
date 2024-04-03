@@ -1,14 +1,11 @@
 "use client";
-
-
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 
 export default function OneAction() {
-  const router = useRouter();
 
-  // const data = Axios.get(`/${}`)
+
+
 
 
   return (
@@ -251,14 +248,14 @@ export default function OneAction() {
             </p>
             <p>Zastavaná plocha hospodárskej budovy je 36,4 m2.</p>
             <p>Predmet dražby sa celkovo nachádza v dobrom stave.</p>
-            <div
+            {/* <div
               onClick={() => router.push("/registration")}
               className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[25px]"
             >
               <p className="font-semibold text-[12px] ml-[10px]">
                 Chcem sa zaregistrovať na dražbu
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12 md:hidden ">
             <img src="/home3.png" alt="" className="w-[100%]" />

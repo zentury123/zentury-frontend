@@ -132,3 +132,60 @@ input[type="checkbox"]:checked::after {
   color: #333;
   margin-left: 5px;
 }
+
+
+/** Swiper Single Car Gallery & Thumbs */
+.swiper-slide-car img {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+.singleCarGalleryThumbs {
+  height: 120px !important;
+  width: 100% !important;
+}
+
+.singleCarGalleryImages {
+  width: 100% !important;
+  height: 350px !important;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  padding: 30px;
+  color: #fff !important;
+}
+
+@media only screen and (max-width: 750px) {
+  .singleCarGalleryImages {
+    width: 100% !important;
+    height: 300px !important;
+  }
+
+  .singleCarGalleryThumbs {
+    height: 70px !important;
+    width: 100% !important;
+  }
+}
+
+.swiper-pagination-bullet-active {
+  background: #fed700 !important;
+  padding: 4px;
+  opacity: var(--swiper-pagination-bullet-inactive-opacity, 1) !important;
+}
+
+.swiper-pagination-clickable .swiper-pagination-bullet {
+  cursor: pointer;
+  padding: 4px;
+  background-color: white;
+  opacity: var(--swiper-pagination-bullet-inactive-opacity, 1) !important;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets,
+.swiper-pagination-bullets.swiper-pagination-horizontal,
+.swiper-pagination-custom,
+.swiper-pagination-fraction {
+  bottom: 3px !important;
+}

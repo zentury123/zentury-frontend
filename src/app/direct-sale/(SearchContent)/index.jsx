@@ -236,7 +236,7 @@ function SearchContent() {
   const [pageNumber, setPageNumber] = useState(1);
 
   // Fetching real estate data based on the current filter settings
-  const { data, loading } = useGetRealState(
+  const { data,pagination, loading } = useGetRealState(
     "direct",
     priceRange,
     selectedRegion,
@@ -277,6 +277,11 @@ function SearchContent() {
     console.log(newValue);
     deboucePriceRange(newValue);
   };
+
+  function handlePageNumber(page){
+    setPageNumber(page)
+  }
+
 
   return (
     <div>
@@ -412,7 +417,8 @@ function SearchContent() {
           </div>
         ))}
       </div>
-      <Pagination />
+      <Pagination totalPages={pagination.pages} count={pagination.count} currentPage={pageNumber} setPageNumber={handlePageNumber} />
+
     </div>
   );
 }

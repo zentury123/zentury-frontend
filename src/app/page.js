@@ -2,17 +2,15 @@
 //import ActionCenter from "@/components/actionCenter";
 import ActionCenter from "../components/actionCenter";
 import Articals from "@/components/articals";
-import ContactUs from "@/components/contact-us";
-import Footer from "@/components/footer";
+
 import HeroBanner from "@/components/hero-banner/page";
 import Loader from "@/components/loader";
-import Login from "@/components/loginModal";
-import Navigation from "@/components/navigation/page";
+
 import OurServices from "@/components/ourServices";
 import Partners from "@/components/partners";
-import TopHeader from "@/components/topHeader/page";
+
 import VideoModal from "@/components/videoModal";
-import Image from "next/image";
+
 import { useEffect, useState } from "react";
 
 export default function Home() {

@@ -8,136 +8,7 @@ import { useRouter } from "next/navigation";
 import useGetRealState from "@/customHooks/useGetRealState";
 
 import useDebounce from "../../../customHooks/useDebounce";
-const arrayData = [
-  {
-    label: "Prvá",
-    img: "/1.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/2.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/3.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/4.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/5.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/6.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/7.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/8.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/9.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/10.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/11.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/12.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/13.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/14.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/16.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/17.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-];
+
 
 const region = [
   "Bratislava",
@@ -236,7 +107,7 @@ function SearchContent() {
   const [pageNumber, setPageNumber] = useState(1);
 
   // Fetching real estate data based on the current filter settings
-  const { data, loading } = useGetRealState(
+  const { data,pagination, loading } = useGetRealState(
     "auction",
     priceRange,
     selectedRegion,
@@ -278,6 +149,10 @@ function SearchContent() {
     deboucePriceRange(newValue);
   };
 
+  function handlePageNumber(page){
+    setPageNumber(page)
+  }
+console.log(pagination)
   return (
     <div>
       <div className="flex flex-wrap  lg:mt-[57px] mt-[30px]">
@@ -366,9 +241,9 @@ function SearchContent() {
         </div>
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
-        {data.map((item) => (
+        {data &&data.map((item) => (
           <div
-            onClick={() => router.push("/one-action")}
+            onClick={() => router.push(`/one-action/${item.slug}`)}
             className="p-[12px] bg-[#F9FCFF] border border-[#C7D5E1] rounded-[18px] cursor-pointer"
           >
             <div className="relative">
@@ -410,7 +285,7 @@ function SearchContent() {
           </div>
         ))}
       </div>
-      <Pagination />
+      <Pagination totalPages={pagination.pages} count={pagination.count} currentPage={pageNumber} setPageNumber={handlePageNumber} />
     </div>
   );
 }

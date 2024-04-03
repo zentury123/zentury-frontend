@@ -1,10 +1,6 @@
 "use client";
-
-import ContactUs from "@/components/contact-us";
-import Footer from "@/components/footer";
 import Loader from "@/components/loader";
-import Navigation from "@/components/navigation/page";
-import TopHeader from "@/components/topHeader/page";
+
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Axios } from "./AxiosData";
-import { Toaster } from "@/components/Toaster";
+import { Toast } from "@/components/Toaster";
 
 const useGetRealState = (
   key,
@@ -12,6 +12,12 @@ const useGetRealState = (
   keywords
 ) => {
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({
+    pages: 0,
+    count: 0,
+    page: 1,
+  });
+
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -23,9 +29,9 @@ const useGetRealState = (
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/all?page=${page}&limit=5&saleType=${key}&priceRange=0-${priceRange}&region=${region}&typeOfRealEstate=${typeOfRealEstate}&typeOfAuction=${typeOfAuction}&search=${keywords}`
         );
         setData(response?.data.result);
-        console.log(response?.data?.result);
+        setPagination({ page: response.data.page, pages: response.data.pages, count: response.data.count })
       } catch (e) {
-        Toaster.fire({
+        Toast.fire({
           icon: "error",
           title: "Niečo sa pokazilo",
         });
@@ -36,6 +42,7 @@ const useGetRealState = (
 
     fetchData();
   }, [
+
     key,
     priceRange,
     region,
@@ -44,8 +51,8 @@ const useGetRealState = (
     page,
     keywords,
   ]);
-
-  return { data, loading };
+console.log(pagination)
+  return { data, pagination:pagination, loading };
 };
 
 export default useGetRealState;
