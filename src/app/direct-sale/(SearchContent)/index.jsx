@@ -8,136 +8,8 @@ import { useRouter } from "next/navigation";
 import useGetRealState from "@/customHooks/useGetRealState";
 
 import useDebounce from "../../../customHooks/useDebounce";
-const arrayData = [
-  {
-    label: "Prvá",
-    img: "/1.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/2.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/3.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/4.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/5.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/6.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/7.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/8.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/9.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/10.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/11.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Prvá",
-    img: "/12.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Nitrianský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/13.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/14.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/16.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-  {
-    label: "Opakovaná",
-    img: "/17.png",
-    price: "148.000 €",
-    title: "Nehnuteľnosť na vydraženie ...",
-    address: "Bratislavský kraj",
-    date: "15.02.2024",
-  },
-];
+import Spinner from "@/components/Spinner";
+
 
 const region = [
   "Bratislava",
@@ -280,6 +152,12 @@ function SearchContent() {
 
   function handlePageNumber(page){
     setPageNumber(page)
+  }
+
+  if (loading) {
+    return (<div className="flex items-center justify-center h-[70vh]">
+      <Spinner />
+    </div>)
   }
 
 

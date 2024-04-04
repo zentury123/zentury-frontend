@@ -1,13 +1,11 @@
 import Pagination from "@/components/pagination/page";
-
 import React, { useCallback, useState } from "react";
 import Slider from "@mui/material/Slider";
-
 import Box from "@mui/material/Box";
 import { useRouter } from "next/navigation";
 import useGetRealState from "@/customHooks/useGetRealState";
-
 import useDebounce from "../../../customHooks/useDebounce";
+import Spinner from "@/components/Spinner";
 
 
 const region = [
@@ -152,7 +150,13 @@ function SearchContent() {
   function handlePageNumber(page){
     setPageNumber(page)
   }
-console.log(pagination)
+
+  if (loading) {
+    return (<div className="flex items-center justify-center h-[70vh]">
+      <Spinner />
+    </div>)
+  }
+
   return (
     <div>
       <div className="flex flex-wrap  lg:mt-[57px] mt-[30px]">
