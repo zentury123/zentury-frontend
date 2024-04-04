@@ -1,7 +1,7 @@
 import React from "react";
 import ImageGallery from "../../../components/Image-gallery/index";
-import Map from "../../../components/Map"
-
+import Map from "../../../components/Map";
+import DirectSaleModal from "./_components/DirectSaleModal";
 export async function generateStaticParams() {
   const posts = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/all?saleType=direct`
@@ -23,35 +23,31 @@ const RealState = async ({ params }) => {
     );
     const response = await res.json();
     const d = await response?.result;
-    return d
-
-
+    return d;
   };
   const data = await fetchData();
 
   return (
     <div className="bg-white min-h-[100vh]">
-
       <div className="lg:mt-[190px] mt-[90px] text-black xl:px-[81px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold  lg:leading-[48px] leading-[35px]">
           {data?.title}
         </p>
         <div className="flex items-center mt-[40px]">
           <p className="text-[29px] font-semibold">Cena:</p> &nbsp;
-          <p className="text-[29px]"> {data?.price}€</p>      </div>
+          <p className="text-[29px]"> {data?.price}€</p>
+        </div>
+        <DirectSaleModal propertyId={data?._id} />
         <div className="grid grid-cols-12 mt-[27px] lg:gap-10 gap-5">
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12  ">
             <ImageGallery galleryImages={data?.images || []} />
             <Map location={data.coordinates} zoom={data.zoom} />
-
           </div>
           <div className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[12px] text-[#44525E] leading-[18px]">
             <div dangerouslySetInnerHTML={{ __html: data?.description }} />
           </div>
-
         </div>
       </div>
-
     </div>
   );
 };
