@@ -1,8 +1,7 @@
-
 import React from "react";
 import ImageGallery from "../../../components/Image-gallery/index";
-import Map from "../../../components/Map"
-
+import Map from "../../../components/Map";
+import RegisterModal from "./_components/RegisterModal";
 
 export async function generateStaticParams() {
   const posts = await fetch(
@@ -14,10 +13,7 @@ export async function generateStaticParams() {
   }));
 }
 
-
 export default async function OneAction({ params }) {
-
-
   const { slug } = params;
   const fetchData = async () => {
     const res = await fetch(
@@ -28,12 +24,9 @@ export default async function OneAction({ params }) {
     );
     const response = await res.json();
     const d = await response?.result;
-    return d
-
-
+    return d;
   };
   const data = await fetchData();
-
 
   return (
     <div className="bg-white min-h-[100vh]">
@@ -46,11 +39,15 @@ export default async function OneAction({ params }) {
             <div className="w-[100%]">
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1]">
                 <p className="text-[13px] font-semibold">Dražba:</p>
-                <p className="text-[#44525E] text-[12px]">{data?.typeOfAuction}</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {data?.typeOfAuction}
+                </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Dátum dražby:</p>
-                <p className="text-[#44525E] text-[12px]">{new Date(data.dateOfAuction).toLocaleDateString()}</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {new Date(data.dateOfAuction).toLocaleDateString()}
+                </p>
               </div>
               <div className="flex justify-between  pb-3 border-b border-[#C7D5E1]  mt-[13px]">
                 <p className="text-[13px] font-semibold w-[150px]">
@@ -63,23 +60,31 @@ export default async function OneAction({ params }) {
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Prvá obhliadka:</p>
-                <p className="text-[#44525E] text-[12px]">{data.firstInspection}</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {data.firstInspection}
+                </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Druhá obhliadka:</p>
-                <p className="text-[#44525E] text-[12px]">{data.secondInspection}</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {data.secondInspection}
+                </p>
               </div>
             </div>
             <div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1]">
                 <p className="text-[13px] font-semibold">Najnižšie podanie:</p>
-                <p className="text-[#44525E] text-[12px]">{data.lowestSubmission} €</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {data.lowestSubmission} €
+                </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">
                   Minimálne prihodenie:
                 </p>
-                <p className="text-[#44525E] text-[12px]">{data.minimumTurnover} €</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {data.minimumTurnover} €
+                </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">
@@ -103,7 +108,9 @@ export default async function OneAction({ params }) {
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Katastrálne územie:</p>
-                <p className="text-[#44525E] text-[12px]">{data.cadastralArea}</p>
+                <p className="text-[#44525E] text-[12px]">
+                  {data.cadastralArea}
+                </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Ulica:</p>
@@ -112,14 +119,15 @@ export default async function OneAction({ params }) {
             </div>
           </div>
           <div className="flex justify-end">
-            <div
+            {/* <div
               // onClick={() => router.push("/registration")}
               className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[30px]"
             >
               <p className="font-semibold text-[12px] ml-[10px]">
                 Chcem sa zaregistrovať na dražbu
               </p>
-            </div>
+            </div> */}
+            <RegisterModal />
           </div>
         </div>
         <div className="grid grid-cols-12 mt-[58px] lg:gap-10 gap-5">
@@ -138,7 +146,10 @@ export default async function OneAction({ params }) {
               <p className="text-[#44525E] text-[12px]">Znalecký posudok.pdf</p>
             </div> */}
           </div>
-          <div className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[17px] text-[#44525E] leading-[22px]" dangerouslySetInnerHTML={{ __html: data.description }} />
+          <div
+            className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[17px] text-[#44525E] leading-[22px]"
+            dangerouslySetInnerHTML={{ __html: data.description }}
+          />
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12 md:hidden ">
             <img src="/home3.png" alt="" className="w-[100%]" />
             <div className="flex justify-between mt-[18px]">
@@ -171,7 +182,6 @@ export default async function OneAction({ params }) {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

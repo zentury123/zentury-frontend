@@ -1,16 +1,9 @@
 "use client";
 import React from "react";
 
-
 export default function OneAction() {
-
-
-
-
-
   return (
     <div className="bg-white min-h-[100vh]">
-   
       <div className="lg:mt-[190px] mt-[90px] text-black xl:px-[81px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold  lg:leading-[48px] leading-[35px]">
           Názov nehnuteľnosti v dražbe
@@ -87,7 +80,7 @@ export default function OneAction() {
           </div>
           <div className="flex justify-end">
             <div
-              onClick={() => router.push("/registration")}
+              // onClick={() => router.push("/registration")}
               className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[30px]"
             >
               <p className="font-semibold text-[12px] ml-[10px]">
@@ -289,7 +282,6 @@ export default function OneAction() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }
