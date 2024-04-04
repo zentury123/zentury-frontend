@@ -38,9 +38,10 @@ const DirectSaleModal = ({ propertyId }) => {
       </button>
       {isOpen && (
         <div className="fixed inset-0 top-0 flex items-center justify-center z-50 ">
+          <div className="fixed inset-0 bg-black opacity-50 "></div>
           <div
             className=" relative max-w-[603px] w-[100%] border border-[#C7D5E1] lg:mt-0 mt-10  rounded-[39px] px-[30px] pt-[40px] pb-[17px] bg-white text-black "
-            style={{ boxShadow: "0px 0px 30px 0px #AEC0CECC" }}
+            // style={{ boxShadow: "0px 0px 30px 0px #AEC0CECC" }}
           >
             <div className="absolute top-3 right-5 ">
               <svg
