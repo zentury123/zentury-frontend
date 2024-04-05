@@ -127,7 +127,7 @@ export default async function OneAction({ params }) {
                 Chcem sa zaregistrovať na dražbu
               </p>
             </div> */}
-            <RegisterModal />
+            <RegisterModal id={data._id} />
           </div>
         </div>
         <div className="grid grid-cols-12 mt-[58px] lg:gap-10 gap-5">

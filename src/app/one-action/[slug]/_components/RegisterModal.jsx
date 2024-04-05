@@ -1,9 +1,49 @@
 "use client";
-import React, { useState } from "react";
-
-const RegisterModal = () => {
+import React, { useRef, useState } from "react";
+import useRegisterForAuction from "@/customHooks/useRegisterForAuction";
+const RegisterModal = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { loading, registerForAuction } = useRegisterForAuction();
+  const formRef = useRef(null);
+  const [permission, setPermission] = useState(false);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const {
+      postalCode,
+      email,
+      telephone,
+      ownership,
+      typeOfPerson,
+      firstName,
+      lastName,
+      security,
+      companyName,
+      ico,
+      representative,
+      street,
+      houseNumber,
+    } = formRef.current;
 
+    await registerForAuction(
+      {
+        postalCode: postalCode.value,
+        email: email.value,
+        telephone: telephone.value,
+        ownership: ownership.value,
+        typeOfPerson: typeOfPerson.value,
+        firstName: firstName.value,
+        lastName: lastName.value,
+        security: security.value,
+        companyName: companyName.value,
+        ico: ico.value,
+        representative: representative.value,
+        street: street.value,
+        houseNumber: houseNumber.value,
+      },
+      id
+    );
+    setIsOpen(false);
+  };
   return (
     <>
       <button
@@ -37,16 +77,20 @@ const RegisterModal = () => {
                 />
               </svg>
             </div>
-            <div className="grid sm:grid-cols-2 grid-cols-1 mt-[59px] lg:gap-[120px] gap-[30px]">
-              <form>
+            <form ref={formRef} onSubmit={handleSubmit}>
+              <div className="grid sm:grid-cols-2 grid-cols-1 mt-[59px] lg:gap-[120px] gap-[30px]">
                 <div>
                   <input
                     type="text"
+                    required
+                    name="typeOfPerson"
                     placeholder="Typ osoby"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px]"
                   />
                   <input
                     type="text"
+                    name="ico"
+                    required
                     placeholder="IČO"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
@@ -55,21 +99,29 @@ const RegisterModal = () => {
                   </p>
                   <input
                     type="text"
+                    name="firstName"
+                    required
                     placeholder="Meno"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[15px]"
                   />
                   <input
                     type="text"
+                    name="street"
+                    required
                     placeholder="Ulica"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
                     type="text"
+                    name="postalCode"
+                    required
                     placeholder="PSČ"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
                     type="text"
+                    name="email"
+                    required
                     placeholder="E-mail"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
@@ -79,25 +131,49 @@ const RegisterModal = () => {
                     </p>
                     <div className="ml-[22px]">
                       <div className="flex">
-                        <input type="checkbox" className="" />
+                        <input
+                          type="radio"
+                          className=""
+                          value={"SecurityType1"}
+                          name="security"
+                          id="security"
+                        />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           V hotovosti
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="checkbox" className="" />
+                        <input
+                          type="radio"
+                          className=""
+                          name="security"
+                          value={"SecurityType2"}
+                          id="security"
+                        />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Na účet
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="checkbox" className="" />
+                        <input
+                          type="radio"
+                          className=""
+                          value={"SecurityType3"}
+                          name="security"
+                          id="security"
+                        />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Banková záruka
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="checkbox" className="" />
+                        <input
+                          value={"SecurityType4"}
+                          type="radio"
+                          className=""
+                          name="security"
+                          id="security"
+                        />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Notárska úschova
                         </p>
@@ -107,7 +183,9 @@ const RegisterModal = () => {
                 </div>
                 <div>
                   <input
+                    name="companyName"
                     type="text"
+                    required
                     placeholder="Názov spoločnosti"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px]"
                   />
@@ -116,26 +194,31 @@ const RegisterModal = () => {
                   </p>
                   <input
                     type="text"
+                    name="representative"
                     placeholder="Zastúpená"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[15px]"
                   />
                   <input
                     type="text"
+                    name="lastName"
                     placeholder="Priezvisko"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
 
                   <input
                     type="text"
+                    name={"houseNumber"}
                     placeholder="Číslo ulice"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
                     type="text"
                     placeholder="Mesto"
+                    name="city"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
+                    name="telephone"
                     type="text"
                     placeholder="Telefón"
                     className="w-[100%] h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
@@ -151,7 +234,7 @@ const RegisterModal = () => {
                     </p>
                     <div className="ml-[22px]">
                       <div className="flex">
-                        <input type="checkbox" className="" />
+                        <input type="checkbox" className="" name="ownership" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           V hotovosti
                         </p>
@@ -177,14 +260,28 @@ const RegisterModal = () => {
                     </div>
                   </div>
                   <div className="flex mt-[75px]">
-                    <input type="checkbox" id="custom-checkbox" />
+                    <input
+                      type="checkbox"
+                      id="custom-checkbox"
+                      onChange={(e) => setPermission(e.target.checked)}
+                    />
                     <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                       Súhlasím so spracovaním osobných údajov
                     </p>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+              <div className=" w-full flex justify-center">
+                <button
+                  className={` text-white rounded-lg p-3 w-full mt-2 ${
+                    permission ? "bg-black" : "bg-gray-300"
+                  }`}
+                  disabled={!permission}
+                >
+                  {loading ? "Registrácia" : "Registrovať"}
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       )}
