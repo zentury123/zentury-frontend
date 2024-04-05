@@ -135,7 +135,7 @@ export default async function OneAction({ params }) {
             <ImageGallery galleryImages={data?.images || []} />
 
             <Map location={data.coordinates} zoom={data.zoom} />
-            <img src="/Map1.png" alt="" className="mt-10" />
+            {/* <img src="/Map1.png" alt="" className="mt-10" /> */}
             {/* <div>
               <p className="text-[21px] font-semibold mt-[58px]">
                 Dokumenty na stiahnutie
@@ -150,7 +150,7 @@ export default async function OneAction({ params }) {
             className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[17px] text-[#44525E] leading-[22px]"
             dangerouslySetInnerHTML={{ __html: data.description }}
           />
-          <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12 md:hidden ">
+          {/* <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12 md:hidden ">
             <img src="/home3.png" alt="" className="w-[100%]" />
             <div className="flex justify-between mt-[18px]">
               <img
@@ -179,7 +179,7 @@ export default async function OneAction({ params }) {
               </p>
               <p className="text-[#44525E] text-[12px]">Znalecký posudok.pdf</p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

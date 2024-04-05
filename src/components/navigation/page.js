@@ -72,34 +72,30 @@ export default function Navigation() {
             />
             <div className="flex xl:ml-[80px] ml-[20px] xl:mr-[80px] mr-[20px] w-[100%] justify-between">
               <p
-                className={`${
-                  pathname === "/" ? "text-[#D3A86B]" : "text-white"
-                } font-semibold cursor-pointer  hover:text-[#D3A86B]`}
+                className={`${pathname === "/" ? "text-[#D3A86B]" : "text-white"
+                  } font-semibold cursor-pointer  hover:text-[#D3A86B]`}
                 onClick={() => router.push("/")}
               >
                 Domov
               </p>
               <p
-                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                  pathname === "/about-comany" ? "text-[#D3A86B]" : "text-white"
-                }`}
+                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/about-comany" ? "text-[#D3A86B]" : "text-white"
+                  }`}
                 onClick={() => router.push("/about-comany")}
               >
                 O spoločnosti
               </p>
               <p
-                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                  pathname === "/about" ? "text-[#D3A86B]" : "text-white"
-                }`}
+                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/about" ? "text-[#D3A86B]" : "text-white"
+                  }`}
                 onClick={() => router.push("/about")}
               >
                 O dražbách
               </p>
 
               <p
-                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                  pathname === "/calendar" ? "text-[#D3A86B]" : "text-white"
-                }`}
+                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/calendar" ? "text-[#D3A86B]" : "text-white"
+                  }`}
                 onClick={() => router.push("/calendar")}
               >
                 Dražobný kalendár
@@ -149,29 +145,14 @@ export default function Navigation() {
                 )}
               </div>
               <p
-                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                  pathname === "/contact" ? "text-[#D3A86B]" : "text-white"
-                }`}
+                className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/contact" ? "text-[#D3A86B]" : "text-white"
+                  }`}
                 onClick={() => router.push("/contact")}
               >
                 Kontakt
               </p>
             </div>
-            {pathname === "/register-for" ||
-            pathname === "/registration" ||
-            pathname === "/my-account" ? (
-              <div className="flex w-[150px]">
-                <img src="/Vector (2).svg" alt="" />
-                <p
-                  className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${
-                    pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
-                  }`}
-                  onClick={() => router.push("/my-account")}
-                >
-                  Môj účet
-                </p>
-              </div>
-            ) : (
+            {(
               <div className="flex items-center w-[400px]">
                 <img src="/group-165.svg" alt="" />
                 <p className="font-semibold ml-[11px] cursor-pointer">
@@ -183,12 +164,25 @@ export default function Navigation() {
                       Prihlásenie
                     </span>
                   ) : (
-                    <span
-                      className="hover:text-[#D3A86B] text-white"
-                      onClick={() => signOut({ callbackUrl: "/" })}
-                    >
-                      Odhlásiť
-                    </span>
+                    <div className="flex gap-4 items-center">
+                      <span
+                        className="hover:text-[#D3A86B] text-white"
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                      >
+                        Odhlásiť
+                      </span>
+
+                      <div className="flex w-[150px]">
+                        <img src="/Vector (2).svg" alt="" />
+                        <p
+                          className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
+                            }`}
+                          onClick={() => router.push("/my-account")}
+                        >
+                          Môj účet
+                        </p>
+                      </div>
+                    </div>
                   )}
                   {!session?.user?.accessToken && (
                     <span
