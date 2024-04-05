@@ -3,26 +3,19 @@ import React, { useEffect, useState } from "react";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import TopHeader from "@/components/topHeader/page";
-import Navigation from "@/components/navigation/page";
-import ContactUs from "@/components/contact-us";
-import Footer from "@/components/footer";
+
 import { Views } from "react-big-calendar";
-import Loader from "@/components/loader";
 
-moment.locale("en-GB");
+
+
+
+ const CalendarPage = () => {
+
+  moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
-
-export const CalendarPage = () => {
   const [view, setView] = useState(Views.MONTH);
   const [date, setDate] = useState(new Date());
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1400);
-  }, []);
-  if (loading) {
-    return <Loader />;
-  }
+
 
   return (
     <div className="bg-[white] min-h-[100vh]">
