@@ -9,7 +9,7 @@ import Slider from "@mui/material/Slider";
 import Box from "@mui/material/Box";
 import { useRouter } from "next/navigation";
 import Loader from "@/components/loader";
-
+import SearchContent from "./(SearchContent)/index";
 export default function DirectSale() {
   const arrayData = [
     {
@@ -171,8 +171,6 @@ export default function DirectSale() {
   }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
       <div className="lg:mt-[190px] mt-[90px] text-black xl:px-[81px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold  lg:leading-[48px] leading-[35px]">
           Priamy predaj
@@ -231,7 +229,7 @@ export default function DirectSale() {
         <p className="lg:text-[40px] text-[25px] font-semibold  lg:leading-[48px] leading-[35px] lg:mt-[60px] mt-[30px]">
           Ponuka dobrovolných dražieb
         </p>
-        <div className="flex flex-wrap  lg:mt-[57px] mt-[30px]">
+        {/* <div className="flex flex-wrap  lg:mt-[57px] mt-[30px]">
           <input
             className="bg-[#F9FCFF] border border-[#C7D5E1] indent-4 w-[280px] h-[49px] rounded-[18px] mr-[17px] mt-3"
             type="text"
@@ -417,8 +415,9 @@ export default function DirectSale() {
               )}
             </div>
           </div>
-        </div>
-        <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
+        </div> */}
+        <SearchContent />
+        {/* <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
           {arrayData.map((item) => (
             <div
               onClick={() => router.push("/sale-real-state")}
@@ -458,13 +457,10 @@ export default function DirectSale() {
               </div>
             </div>
           ))}
-        </div>
-        <Pagination />
+        </div> */}
+        {/* <Pagination /> */}
       </div>
-      <div className="mt-[89px]">
-        <ContactUs />
-        <Footer />
-      </div>
+
     </div>
   );
 }

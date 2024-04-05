@@ -1,13 +1,24 @@
 "use client";
-import React, { useState } from "react";
-
+import React, { useRef, useState } from "react";
+import useForgotPassword from "@/customHooks/useForgetPassword";
 const ResetPassword = ({
   isOpen,
   onClose,
   setIsOpen,
   openModalVerificationCode,
 }) => {
-  const [show, setShow] = useState(false);
+  const { loading, sendVerificationEmail } = useForgotPassword();
+  const formRef = useRef(null);
+  const handleSendVerificationEmail = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(formRef.current);
+    const email = formData.get("email");
+    try {
+      await sendVerificationEmail(email);
+      openModalVerificationCode();
+      onClose();
+    } catch (error) {}
+  };
   return (
     <>
       {isOpen && (
@@ -42,37 +53,39 @@ const ResetPassword = ({
                 Zabudli ste Vaše heslo? Môžete si ho obnoviť zadaním emailu
               </p>
             </div>
-            <div className="sm:mt-[38px] mt-[20px]">
-              <input
-                type="text"
-                placeholder="Váš email"
-                className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black"
-              />
+            <form ref={formRef} onSubmit={handleSendVerificationEmail}>
+              <div className="sm:mt-[38px] mt-[20px]">
+                <input
+                  name="email"
+                  type="email"
+                  placeholder="Váš email"
+                  className="h-[57px] w-[100%] border border-[#C7D5E1] rounded-[18px] indent-4 text-black"
+                />
 
-              <div
-                onClick={() => {
-                  openModalVerificationCode();
-                  onClose();
-                }}
-                className="text-white flex cursor-pointer justify-center items-center h-[59px] w-[100%] bg-gradient-to-b from-[#D3A86B] rounded-[18px] mt-[18px] to-[#A3784A] font-semibold"
-              >
-                Zmeniť heslo
+                <button
+                  type="submit"
+                  className="text-white flex cursor-pointer justify-center items-center h-[59px] w-[100%] bg-gradient-to-b from-[#D3A86B] rounded-[18px] mt-[18px] to-[#A3784A] font-semibold"
+                >
+                  {loading
+                    ? "Odosielanie overovacieho e-mailu"
+                    : "Zmeniť heslo"}
+                </button>
+                <div className="mt-[31px] pb-[20px]">
+                  <p className="text-black text-center cursor-pointer">
+                    Späť na &nbsp;
+                    <span
+                      className="text-[#D3A86B] cursor-pointer underline"
+                      onClick={() => {
+                        onClose();
+                        setIsOpen(true);
+                      }}
+                    >
+                      prihlásenie
+                    </span>
+                  </p>
+                </div>
               </div>
-              <div className="mt-[31px] pb-[20px]">
-                <p className="text-black text-center cursor-pointer">
-                  Späť na &nbsp;
-                  <span
-                    className="text-[#D3A86B] cursor-pointer underline"
-                    onClick={() => {
-                      onClose();
-                      setIsOpen(true);
-                    }}
-                  >
-                    prihlásenie
-                  </span>
-                </p>
-              </div>
-            </div>
+            </form>
           </div>
         </div>
       )}

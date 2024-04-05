@@ -1,26 +1,9 @@
 "use client";
-
-import ContactUs from "@/components/contact-us";
-import Footer from "@/components/footer";
-import Loader from "@/components/loader";
-import Navigation from "@/components/navigation/page";
-import TopHeader from "@/components/topHeader/page";
-import { useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 export default function OneAction() {
-  const router = useRouter();
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1400);
-  }, []);
-  if (loading) {
-    return <Loader />;
-  }
   return (
     <div className="bg-white min-h-[100vh]">
-      <TopHeader />
-      <Navigation />
       <div className="lg:mt-[190px] mt-[90px] text-black xl:px-[81px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold  lg:leading-[48px] leading-[35px]">
           Názov nehnuteľnosti v dražbe
@@ -97,7 +80,7 @@ export default function OneAction() {
           </div>
           <div className="flex justify-end">
             <div
-              onClick={() => router.push("/registration")}
+              // onClick={() => router.push("/registration")}
               className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[30px]"
             >
               <p className="font-semibold text-[12px] ml-[10px]">
@@ -258,14 +241,14 @@ export default function OneAction() {
             </p>
             <p>Zastavaná plocha hospodárskej budovy je 36,4 m2.</p>
             <p>Predmet dražby sa celkovo nachádza v dobrom stave.</p>
-            <div
+            {/* <div
               onClick={() => router.push("/registration")}
               className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[25px]"
             >
               <p className="font-semibold text-[12px] ml-[10px]">
                 Chcem sa zaregistrovať na dražbu
               </p>
-            </div>
+            </div> */}
           </div>
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12 md:hidden ">
             <img src="/home3.png" alt="" className="w-[100%]" />
@@ -298,10 +281,6 @@ export default function OneAction() {
             </div>
           </div>
         </div>
-      </div>
-      <div className="mt-[89px]">
-        <ContactUs />
-        <Footer />
       </div>
     </div>
   );

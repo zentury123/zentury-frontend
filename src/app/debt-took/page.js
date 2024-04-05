@@ -17,8 +17,7 @@ export default function Povinnosti() {
   }
   return (
     <div className="bg-white min-h-[100vh] ">
-      <TopHeader />
-      <Navigation />
+
       <div className="pb-[127px] lg:pt-[127px] mt-[90px] xl:px-[105px] px-[30px] text-black">
         <p className="lg:text-[40px] text-[25px] text-black font-[600]">
           DLHY ZOBRALI SLOVÁKOM TISÍCKY BYTOV
@@ -102,8 +101,7 @@ export default function Povinnosti() {
           </p>
         </div>
       </div>
-      <ContactUs />
-      <Footer />
+
     </div>
   );
 }
