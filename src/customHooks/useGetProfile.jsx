@@ -21,7 +21,7 @@ const useGetProfile = () => {
             },
           });
 
-          setData(res.data.result)
+          setData(res.data?.result)
         } catch (error) {
           throw new Error(error?.response?.data?.message);
         } finally {

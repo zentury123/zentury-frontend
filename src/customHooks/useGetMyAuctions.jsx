@@ -25,8 +25,8 @@ const useGetMyAuctions = (page) => {
             },
           });
 
-          setData(res?.data.result);
-          setPagination({ page: res.data.page, pages: res.data.pages, count: res.data.count })
+          setData(res?.data?.result);
+          setPagination({ page: res.data?.page, pages: res.data?.pages, count: res.data?.count })
         } catch (error) {
           throw new Error(error?.res?.data?.message);
         } finally {

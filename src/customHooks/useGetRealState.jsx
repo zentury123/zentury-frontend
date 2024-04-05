@@ -28,8 +28,8 @@ const useGetRealState = (
         const response = await Axios.get(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/all?page=${page}&limit=10&saleType=${key}&priceRange=0-${priceRange}&region=${region}&typeOfRealEstate=${typeOfRealEstate}&typeOfAuction=${typeOfAuction}&search=${keywords}`
         );
-        setData(response?.data.result);
-        setPagination({ page: response.data.page, pages: response.data.pages, count: response.data.count })
+        setData(response?.data?.result);
+        setPagination({ page: response.data?.page, pages: response.data?.pages, count: response.data?.count })
       } catch (e) {
         Toast.fire({
           icon: "error",

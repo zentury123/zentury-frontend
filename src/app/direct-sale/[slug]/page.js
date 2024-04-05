@@ -41,7 +41,7 @@ const RealState = async ({ params }) => {
         <div className="grid grid-cols-12 mt-[27px] lg:gap-10 gap-5">
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12  ">
             <ImageGallery galleryImages={data?.images || []} />
-            <Map location={data.coordinates} zoom={data.zoom} />
+            <Map location={data?.coordinates} zoom={data?.zoom} />
           </div>
           <div className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[12px] text-[#44525E] leading-[18px]">
             <div dangerouslySetInnerHTML={{ __html: data?.description }} />

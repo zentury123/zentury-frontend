@@ -46,7 +46,7 @@ export default async function OneAction({ params }) {
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Dátum dražby:</p>
                 <p className="text-[#44525E] text-[12px]">
-                  {new Date(data.dateOfAuction).toLocaleDateString()}
+                  {new Date(data?.dateOfAuction).toLocaleDateString()}
                 </p>
               </div>
               <div className="flex justify-between  pb-3 border-b border-[#C7D5E1]  mt-[13px]">
@@ -61,13 +61,13 @@ export default async function OneAction({ params }) {
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Prvá obhliadka:</p>
                 <p className="text-[#44525E] text-[12px]">
-                  {data.firstInspection}
+                  {data?.firstInspection}
                 </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Druhá obhliadka:</p>
                 <p className="text-[#44525E] text-[12px]">
-                  {data.secondInspection}
+                  {data?.secondInspection}
                 </p>
               </div>
             </div>
@@ -75,7 +75,7 @@ export default async function OneAction({ params }) {
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1]">
                 <p className="text-[13px] font-semibold">Najnižšie podanie:</p>
                 <p className="text-[#44525E] text-[12px]">
-                  {data.lowestSubmission} €
+                  {data?.lowestSubmission} €
                 </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
@@ -83,38 +83,38 @@ export default async function OneAction({ params }) {
                   Minimálne prihodenie:
                 </p>
                 <p className="text-[#44525E] text-[12px]">
-                  {data.minimumTurnover} €
+                  {data?.minimumTurnover} €
                 </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">
                   Cena zistená znaleckým posudkom:
                 </p>
-                <p className="text-[#44525E] text-[12px]">{data.price} €</p>
+                <p className="text-[#44525E] text-[12px]">{data?.price} €</p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Dražobná zábezpeka:</p>
-                <p className="text-[#44525E] text-[12px]">{data.security} €</p>
+                <p className="text-[#44525E] text-[12px]">{data?.security} €</p>
               </div>
             </div>
             <div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1]">
                 <p className="text-[13px] font-semibold">Mesto:</p>
-                <p className="text-[#44525E] text-[12px]">{data.city}</p>
+                <p className="text-[#44525E] text-[12px]">{data?.city}</p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Regiónu:</p>
-                <p className="text-[#44525E] text-[12px]">{data.region}</p>
+                <p className="text-[#44525E] text-[12px]">{data?.region}</p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Katastrálne územie:</p>
                 <p className="text-[#44525E] text-[12px]">
-                  {data.cadastralArea}
+                  {data?.cadastralArea}
                 </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Ulica:</p>
-                <p className="text-[#44525E] text-[12px]">{data.street}</p>
+                <p className="text-[#44525E] text-[12px]">{data?.street}</p>
               </div>
             </div>
           </div>
@@ -127,14 +127,14 @@ export default async function OneAction({ params }) {
                 Chcem sa zaregistrovať na dražbu
               </p>
             </div> */}
-            <RegisterModal id={data._id} />
+            <RegisterModal id={data?._id} />
           </div>
         </div>
         <div className="grid grid-cols-12 mt-[58px] lg:gap-10 gap-5">
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12  ">
             <ImageGallery galleryImages={data?.images || []} />
 
-            <Map location={data.coordinates} zoom={data.zoom} />
+            <Map location={data?.coordinates} zoom={data?.zoom} />
             {/* <img src="/Map1.png" alt="" className="mt-10" /> */}
             {/* <div>
               <p className="text-[21px] font-semibold mt-[58px]">
@@ -148,7 +148,7 @@ export default async function OneAction({ params }) {
           </div>
           <div
             className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[17px] text-[#44525E] leading-[22px]"
-            dangerouslySetInnerHTML={{ __html: data.description }}
+            dangerouslySetInnerHTML={{ __html: data?.description }}
           />
           {/* <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12 md:hidden ">
             <img src="/home3.png" alt="" className="w-[100%]" />

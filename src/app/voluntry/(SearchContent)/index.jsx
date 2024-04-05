@@ -101,7 +101,7 @@ function SearchContent() {
   const [propertyType, setPropertyType] = useState("");
   const [auctionType, setAuctionType] = useState("");
   const [keywords, setKeywords] = useState("");
-  const [priceRange, setPriceRange] = useState(1000000);
+  const [priceRange, setPriceRange] = useState(50000000);
   const [pageNumber, setPageNumber] = useState(1);
 
   // Fetching real estate data based on the current filter settings
@@ -187,7 +187,7 @@ function SearchContent() {
               </div>
               <Box sx={{ width: "100%" }}>
                 <Slider
-                  defaultValue={50}
+                  value={priceRange}
                   aria-label="Default"
                   min={0}
                   max={1000000}
@@ -245,7 +245,7 @@ function SearchContent() {
         </div>
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
-        {data &&data.map((item) => (
+        {data &&data?.map((item) => (
           <div
             onClick={() => router.push(`/one-action/${item.slug}`)}
             className="p-[12px] bg-[#F9FCFF] border border-[#C7D5E1] rounded-[18px] cursor-pointer"

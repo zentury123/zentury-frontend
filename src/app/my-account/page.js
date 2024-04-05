@@ -32,10 +32,10 @@ export default function MyAccount() {
     console.log(data)
     if (data) {
       setFormData({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        email: data.email,
-        phone: data.phone
+        firstName: data?.firstName,
+        lastName: data?.lastName,
+        email: data?.email,
+        phone: data?.phone
       })
     }
   }, [data])

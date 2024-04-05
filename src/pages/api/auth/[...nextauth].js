@@ -27,7 +27,7 @@ export const authOptions = {
         );
 
         // console.log(response?.data?.result + "this is token");
-        if (response?.data.result?.accessToken) {
+        if (response?.data?.result?.accessToken) {
           return response?.data?.result;
         } else {
           return null;
