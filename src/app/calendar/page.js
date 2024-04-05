@@ -13,7 +13,7 @@ import Loader from "@/components/loader";
 moment.locale("en-GB");
 const localizer = momentLocalizer(moment);
 
-export const CalendarPage = () => {
+ const CalendarPage = () => {
   const [view, setView] = useState(Views.MONTH);
   const [date, setDate] = useState(new Date());
   const [loading, setLoading] = useState(true);
