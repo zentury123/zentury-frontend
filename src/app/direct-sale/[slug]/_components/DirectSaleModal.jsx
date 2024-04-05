@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import useDirectSaleContact from "@/customHooks/useDirectSaleContact";
+
 const DirectSaleModal = ({ propertyId }) => {
   const [isOpen, setIsOpen] = useState(false);
 
