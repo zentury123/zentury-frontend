@@ -1,23 +1,30 @@
 "use client";
 
-import Footer from "@/components/footer";
-import Loader from "@/components/loader";
-import Navigation from "@/components/navigation/page";
-import TopHeader from "@/components/topHeader/page";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import useContact from "@/customHooks/useContact";
 
 export default function Contact() {
-  const [loading, setLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1400);
-  }, []);
-  if (loading) {
-    return <Loader />;
+  const { loading, sendContactQuery } = useContact();
+
+  const [formData, setFormData] = React.useState({
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "phone": "",
+    "message": ""
+  })
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
   }
-  return (
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await sendContactQuery(formData);
+    e.target.reset();
+  }
+  (
     <div className="min-h-[100vh] bg-white">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[187px] mt-[90px] lg:px-[105px] px-[17px]">
         <p className="lg:text-[40px] text-[25px] text-black font-semibold ">
           Kontakt
@@ -89,7 +96,7 @@ export default function Contact() {
               </div>
             </div>
           </div>
-          <div
+          <form onSubmit={handleSubmit}
             className=" max-w-[603px] w-[100%] border border-[#C7D5E1] lg:mt-0 mt-10  rounded-[39px] px-[30px] pt-[40px] pb-[17px] bg-white text-black "
             style={{ boxShadow: "0px 0px 30px 0px #AEC0CECC" }}
           >
@@ -97,7 +104,10 @@ export default function Contact() {
               <div>
                 <p className="text-[18px] font-semibold">Meno</p>
                 <input
+                  onChange={handleChange}
+                  required={true}
                   type="text"
+                  name="firstName"
                   placeholder="Vaše meno"
                   className="w-[100%] h-[44px] rounded-[12px] border border-[#C7D5E1] indent-[30px] mt-3"
                 />
@@ -105,6 +115,10 @@ export default function Contact() {
               <div>
                 <p className="text-[18px] font-semibold">Priezvisko</p>
                 <input
+                  name="lastName"
+
+                  onChange={handleChange}
+                  required={true}
                   type="text"
                   placeholder="Vaše priezvisko"
                   className="w-[100%] h-[44px] rounded-[12px] border border-[#C7D5E1] indent-[30px] mt-3"
@@ -115,7 +129,11 @@ export default function Contact() {
               <div>
                 <p className="text-[18px] font-semibold">Email</p>
                 <input
-                  type="text"
+                  name="email"
+
+                  onChange={handleChange}
+                  required={true}
+                  type="email"
                   placeholder="váš@email.com"
                   className="w-[100%] h-[44px] rounded-[12px] border border-[#C7D5E1] indent-[30px] mt-3"
                 />
@@ -123,7 +141,10 @@ export default function Contact() {
               <div>
                 <p className="text-[18px] font-semibold">Telefón</p>
                 <input
+                  name="phone"
                   type="text"
+                  onChange={handleChange}
+                  required={true}
                   placeholder="+421"
                   className="w-[100%] h-[44px] rounded-[12px] border border-[#C7D5E1] indent-[30px] mt-3"
                 />
@@ -132,21 +153,22 @@ export default function Contact() {
             <div className="mt-[24px]">
               <p className="text-[18px] font-semibold">Správa</p>
               <textarea
+                name="message"
+
+                onChange={handleChange}
+                required={true}
                 className="rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-3 w-[100%] h-[129px] pt-[20px]"
                 style={{ resize: "none" }}
                 placeholder="Tu prosím napíšte poznámku..."
               />
             </div>
-            <div className="w-[108px] h-[46px] bg-[#010101] rounded-[18px] flex justify-center items-center text-[14px] mt-[17px] cursor-pointer font-semibold text-white">
-              Odoslať
-            </div>
-          </div>
+            <button disabled={loading} type="submit" className="w-[108px] h-[46px] bg-[#010101] rounded-[18px] flex justify-center items-center text-[14px] mt-[17px] cursor-pointer font-semibold text-white">
+              {loading ? "Načítava..." : "Odoslať"}
+            </button>
+          </form>
         </div>
       </div>
 
-      <div className="mt-[124px]">
-        <Footer />
-      </div>
     </div>
   );
 }

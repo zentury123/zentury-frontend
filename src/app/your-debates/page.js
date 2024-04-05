@@ -1,9 +1,7 @@
 "use client";
-import ContactUs from "@/components/contact-us";
-import Footer from "@/components/footer";
+
 import Loader from "@/components/loader";
-import Navigation from "@/components/navigation/page";
-import TopHeader from "@/components/topHeader/page";
+
 import React, { useEffect, useState } from "react";
 
 export default function Povinnosti() {
@@ -16,8 +14,7 @@ export default function Povinnosti() {
   }
   return (
     <div className="bg-white min-h-[100vh] ">
-      <TopHeader />
-      <Navigation />
+ 
       <div className="pb-[127px] lg:pt-[127px] mt-[90px] xl:px-[105px] px-[30px] text-black">
         <p className="lg:text-[40px] text-[25px] text-black font-[600]">
           DLHY VÁM NENARASTÚ, AK ICH VČAS UHRADÍTE
@@ -216,8 +213,7 @@ export default function Povinnosti() {
           </ul>
         </div>
       </div>
-      <ContactUs />
-      <Footer />
+
     </div>
   );
 }

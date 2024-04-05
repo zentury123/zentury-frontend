@@ -1,6 +1,30 @@
+"use client"
 import React from "react";
+import useContact from "@/customHooks/useContact";
+
 
 export default function ContactUs() {
+  const { loading, sendContactQuery } = useContact();
+
+  const [formData, setFormData] = React.useState({
+    "firstName": "",
+    "lastName": "",
+    "email": "",
+    "phone": "",
+    "message": ""
+  })
+
+  function handleChange(e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value })
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    await sendContactQuery(formData);
+    e.target.reset();
+  }
+ 
+
+
   return (
     <div>
       <div className="md:mt-[158px] mt-[51px]">
@@ -16,7 +40,7 @@ export default function ContactUs() {
             alt=""
             className="md:h-[549px] h-[950px] object-cover w-[100%]"
           />
-          <div className="px-[30px]">
+          <form className="px-[30px]" onSubmit={handleSubmit}>
             <div
               className="xl:top-[-150px] sm:top-[-10px] top-[100px]  xl:right-[60px] right-0 xl:left-auto left-0 xl:m-0 m-auto  max-w-[805px] xl:w-[100%] w-[90%] border border-[#C7D5E1]  rounded-[39px] sm:px-[30px] px-[15px] pt-[40px] pb-[17px] bg-white text-black absolute"
               style={{ boxShadow: "0px 0px 30px 0px #AEC0CECC" }}
@@ -25,7 +49,10 @@ export default function ContactUs() {
                 <div>
                   <p className="text-[18px] font-semibold">Meno</p>
                   <input
+                    onChange={handleChange}
+                    required={true}
                     type="text"
+                    name="firstName"
                     placeholder="Vaše meno"
                     className="w-[100%] h-[59px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-3"
                   />
@@ -33,6 +60,10 @@ export default function ContactUs() {
                 <div className="md:mt-0 mt-[20px]">
                   <p className="text-[18px] font-semibold">Priezvisko</p>
                   <input
+                    name="lastName"
+
+                    onChange={handleChange}
+                    required={true}
                     type="text"
                     placeholder="Vaše priezvisko"
                     className="w-[100%] h-[59px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-3"
@@ -43,7 +74,11 @@ export default function ContactUs() {
                 <div>
                   <p className="text-[18px] font-semibold">Email</p>
                   <input
-                    type="text"
+                    name="email"
+
+                    onChange={handleChange}
+                    required={true}
+                    type="email"
                     placeholder="váš@email.com"
                     className="w-[100%] h-[59px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-3"
                   />
@@ -51,6 +86,10 @@ export default function ContactUs() {
                 <div className="md:mt-0 mt-[20px]">
                   <p className="text-[18px] font-semibold">Telefón</p>
                   <input
+                    name="phone"
+
+                    onChange={handleChange}
+                    required={true}
                     type="text"
                     placeholder="+421"
                     className="w-[100%] h-[59px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-3"
@@ -60,16 +99,20 @@ export default function ContactUs() {
               <div className="mt-[33px]">
                 <p className="text-[18px] font-semibold">Správa</p>
                 <textarea
+                  name="message"
+
+                  onChange={handleChange}
+                  required={true}
                   className="rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-3 w-[100%] h-[129px] pt-[20px]"
                   style={{ resize: "none" }}
                   placeholder="Tu prosím napíšte poznámku..."
                 />
               </div>
-              <div className="w-[108px] h-[46px] bg-[#010101] rounded-[18px] flex justify-center items-center text-[14px] mt-[17px] cursor-pointer font-semibold text-white">
-                Odoslať
-              </div>
+              <button disabled={loading} type="submit" className="w-[108px] h-[46px] bg-[#010101] rounded-[18px] flex justify-center items-center text-[14px] mt-[17px] cursor-pointer font-semibold text-white">
+                {loading ? "Načítava..." : "Odoslať"}
+              </button >
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

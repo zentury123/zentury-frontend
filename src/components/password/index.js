@@ -7,7 +7,7 @@ const UpdatePassword = ({
   setIsOpen,
   openModalVerificationCode,
 }) => {
-  const [show, setShow] = useState(false);
+
   return (
     <>
       {isOpen && (
@@ -43,6 +43,7 @@ const UpdatePassword = ({
               </p>
             </div>
             <div className="sm:mt-[38px] mt-[20px]">
+
               <input
                 type="text"
                 placeholder="Nové heslo"

@@ -17,8 +17,7 @@ export default function BusinessCondition() {
   }
   return (
     <div className="min-h-[100vh] bg-white">
-      <TopHeader />
-      <Navigation />
+
       <div className="lg:mt-[187px] mt-[90px] xl:px-[105px] px-[24px]">
         <p className="lg:text-[40px] text-[25px] font-semibold text-black">
           Obchodné podmienky
@@ -613,8 +612,7 @@ export default function BusinessCondition() {
           <p>ZENTURY, s.r.o.</p>
         </div>
       </div>
-      <ContactUs />
-      <Footer />
+
     </div>
   );
 }
