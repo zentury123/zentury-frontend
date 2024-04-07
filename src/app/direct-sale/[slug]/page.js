@@ -2,7 +2,7 @@ import React from "react";
 import ImageGallery from "../../../components/Image-gallery/index";
 import Map from "../../../components/Map";
 import DirectSaleModal from "./_components/DirectSaleModal";
-import {formatCurrency} from "@/utils";
+import { formatCurrency } from "@/utils";
 
 export async function generateStaticParams() {
   const posts = await fetch(
@@ -44,6 +44,10 @@ const RealState = async ({ params }) => {
           <div className="xl:col-span-4 lg:col-span-5 md:col-span-6 col-span-12  ">
             <ImageGallery galleryImages={data?.images || []} />
             <Map location={data?.coordinates} zoom={data?.zoom} />
+            {data?.document1 || data?.document2 && <div><p class="text-[21px] font-semibold mt-[58px]">Dokumenty na stiahnutie</p>
+              {data?.document1 && <a href={data?.document1} download={true} class="text-[#44525E] text-[12px] block mt-[20px]">Dokument 1.pdf</a>}
+              {data?.document2 && <a href={data?.document2} download={true} class="text-[#44525E] text-[12px] block">Dokument 2.pdf</a>}
+            </div>}
           </div>
           <div className="xl:col-span-8 lg:col-span-7 md:col-span-6 col-span-12 text-[12px] text-[#44525E] leading-[18px]">
             <div dangerouslySetInnerHTML={{ __html: data?.description }} />
