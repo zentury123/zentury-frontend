@@ -28,6 +28,8 @@ const Login = ({ isOpen, onClose, forgotPassword, setIsRegister }) => {
         onClose();
       }
     } catch (error) {
+      console.log(error)
+
       Toast.fire({
         icon: "error",
         title: "Nesprávny e-mail alebo heslo",

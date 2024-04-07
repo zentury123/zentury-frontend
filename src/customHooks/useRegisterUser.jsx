@@ -10,7 +10,7 @@ const useRegisterUser = () => {
       const response = await Axios.post("/api/auth/register", userData);
       Toast.fire({
         icon: "success",
-        title: "Heslo bolo obnovené",
+        title: "Na Váš email bol zaslaný verifikačný kód.",
       });
     } catch (error) {
       Toast.fire({

@@ -6,7 +6,6 @@ import Register from "../registerModal";
 import ResetPassword from "../resetPassword";
 import VerificationCode from "../verificationCode";
 import UpdatePassword from "../password";
-import VideoModal from "../videoModal";
 import { useSession, signOut } from "next-auth/react";
 export default function Navigation() {
   const router = useRouter();
@@ -58,7 +57,7 @@ export default function Navigation() {
     setUpdatePassword(false);
   };
   const pathname = usePathname();
-  console.log("pathname", pathname);
+
   return (
     <div>
       <div className="lg:block hidden">

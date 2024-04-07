@@ -5,11 +5,13 @@ import Register from "../registerModal";
 import ResetPassword from "../resetPassword";
 import VerificationCode from "../verificationCode";
 import UpdatePassword from "../password";
+import { useSession, signOut } from "next-auth/react";
 
 const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
   const pathname = usePathname();
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
+  const { data: session } = useSession();
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -56,6 +58,9 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
   const closeModalUpdatePassword = () => {
     setUpdatePassword(false);
   };
+
+
+
   return (
     <div className="flex">
       <button
@@ -64,16 +69,14 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
         style={{ display: drawer ? "block" : "none" }}
       ></button>
       <div
-        className={`fixed inset-y-0 left-0 z-20 w-full h-[100vh] overflow-scroll bg-black shadow-lg ${
-          drawer ? "block" : "hidden"
-        }`}
+        className={`fixed inset-y-0 left-0 z-20 w-full h-[100vh] overflow-scroll bg-black shadow-lg ${drawer ? "block" : "hidden"
+          }`}
       >
         <div className="p-4">
           <div className="flex justify-end mt-[49px]">
             <p
-              className={`${
-                pathname === "/" ? "!text-[#D3A86B]" : "text-white"
-              } font-semibold cursor-pointer `}
+              className={`${pathname === "/" ? "!text-[#D3A86B]" : "text-white"
+                } font-semibold cursor-pointer `}
               onClick={() => router.push("/")}
             >
               Domov
@@ -81,9 +84,8 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
           </div>
           <div className="flex justify-end mt-[23px]">
             <p
-              className={`font-semibold cursor-pointer ${
-                pathname === "/about-comany" ? "!text-[#D3A86B]" : "text-white"
-              }`}
+              className={`font-semibold cursor-pointer ${pathname === "/about-comany" ? "!text-[#D3A86B]" : "text-white"
+                }`}
               onClick={() => router.push("/about-comany")}
             >
               O spoločnosti
@@ -91,9 +93,8 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
           </div>
           <div className="flex justify-end mt-[23px]">
             <p
-              className={`font-semibold cursor-pointer ${
-                pathname === "/about" ? "!text-[#D3A86B]" : "text-white"
-              }`}
+              className={`font-semibold cursor-pointer ${pathname === "/about" ? "!text-[#D3A86B]" : "text-white"
+                }`}
               onClick={() => router.push("/about")}
             >
               O dražbách
@@ -101,9 +102,8 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
           </div>
           <div
             onClick={() => router.push("/calendar")}
-            className={`font-semibold ${
-              pathname === "/calendar" ? "!text-[#D3A86B]" : "text-white"
-            }  flex justify-end mt-[23px] text-white`}
+            className={`font-semibold ${pathname === "/calendar" ? "!text-[#D3A86B]" : "text-white"
+              }  flex justify-end mt-[23px] text-white`}
           >
             <p>Dražobný kalendár</p>
           </div>
@@ -113,15 +113,14 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
           </div>
           <div className="flex justify-end mt-[23px] ">
             <p
-              className={`font-semibold cursor-pointer ${
-                pathname === "/contact" ? "!text-[#D3A86B]" : "text-white"
-              }`}
+              className={`font-semibold cursor-pointer ${pathname === "/contact" ? "!text-[#D3A86B]" : "text-white"
+                }`}
               onClick={() => router.push("/contact")}
             >
               Kontakt
             </p>
           </div>
-          <div className="flex justify-end mt-6">
+          {/* <div className="flex justify-end mt-6">
             <div
               onClick={() => {
                 setIsOpen(true);
@@ -142,7 +141,56 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             >
               Registrácia
             </div>
-          </div>
+          </div> */}
+
+
+          {!session?.user?.accessToken ? (
+            <div className="flex justify-end mt-[15px]">
+              <div
+                onClick={() => {
+                  setIsOpen(true);
+                  toggleDrawer();
+                }}
+                className="w-[106px] h-[34px] text-white cursor-pointer flex justify-center items-center font-semibold bg-gradient-to-b from-[#D3A86B] to-[#A3784A] rounded-[10px]"
+              >
+                Prihlásiť sa
+              </div>
+            </div>
+          ) : (
+            <div className="flex gap-4 items-end flex-col mt-[15px]">
+                      <div className="flex ">
+                <img src="/Vector (2).svg" alt="" />
+                <p
+                  className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
+                    }`}
+                  onClick={() => router.push("/my-account")}
+                >
+                  Môj účet
+                </p>
+              </div>
+              <span
+                className="w-[106px] h-[34px] text-white cursor-pointer flex justify-center items-center font-semibold bg-gradient-to-b from-[#D3A86B] to-[#A3784A] rounded-[10px]"
+                onClick={() => signOut({ callbackUrl: "/" })}
+              >
+                Odhlásiť
+              </span>
+
+      
+            </div>
+          )}
+          {!session?.user?.accessToken && (
+            <div className="flex justify-end mt-[15px]">
+              <div
+                onClick={() => {
+                  setIsRegister(true);
+                  toggleDrawer();
+                }}
+                className="w-[106px] h-[34px] text-white cursor-pointer flex justify-center items-center font-semibold bg-gradient-to-b from-[#D3A86B] to-[#A3784A] rounded-[10px]"
+              >
+                Registrácia
+              </div>
+            </div>
+          )}
           <div className="flex justify-end mt-[74px]">
             <img src="/location1.svg" alt="" />
             <p className="ml-3 text-white">Piaristická 1, 949 01 Nitra</p>
