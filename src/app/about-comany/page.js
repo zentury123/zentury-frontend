@@ -81,9 +81,9 @@ export default function CompanyAbout() {
             Osvedčenie
           </p>
           <p className="text-white">Otvorte si naše osvedčenie</p>
-          <div className="w-[91px] h-[36px] rounded-[18px] text-white bg-[#010101] text-[13px] font-semibold flex justify-center items-center mt-[19px]">
+          <a href="/Zentury.pdf" download={true} className="w-[91px] h-[36px] rounded-[18px] text-white bg-[#010101] text-[13px] font-semibold flex justify-center items-center mt-[19px]">
             Stiahnuť PDF
-          </div>
+          </a>
         </div>
       </div>
 

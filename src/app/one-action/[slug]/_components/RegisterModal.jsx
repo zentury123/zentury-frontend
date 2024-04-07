@@ -86,6 +86,7 @@ const RegisterModal = ({ id }) => {
                     type="text"
                     required
                     name="typeOfPerson"
+                    defaultValue="Právnická osoba"
                     placeholder="Typ osoby"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] bg-transparent indent-[30px]"
                   >
@@ -201,6 +202,7 @@ const RegisterModal = ({ id }) => {
                   <select
                     type="text"
                     name="representative"
+                    defaultValue="Štatutárny zástupca"
                     placeholder="Zastúpená"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] bg-transparent indent-[30px] mt-[15px]"
                   >
