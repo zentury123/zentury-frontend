@@ -16,6 +16,9 @@ const CalendarPage = async () => {
 
   const data = response.data.result.map(aut=>{
     return({
+      _id:aut._id,
+      slug:aut.slug,
+
       title:aut.title,
       start:new Date(aut.dateOfAuction),
       end:new Date(aut.dateOfAuction)
