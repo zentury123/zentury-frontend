@@ -9,6 +9,8 @@ import useGetRealState from "@/customHooks/useGetRealState";
 
 import useDebounce from "../../../customHooks/useDebounce";
 import Spinner from "@/components/Spinner";
+import {formatCurrency} from "@/utils";
+
 
 
 const region = [
@@ -262,13 +264,13 @@ function SearchContent() {
                 alt=""
                 className="object-cover w-full h-[280px]"
               />
-              <div className="px-[15px] py-[5px] border border-white rounded-[7px] absolute top-[18px] left-[17px] bg-[#C6A15A]">
+              {/* <div className="px-[15px] py-[5px] border border-white rounded-[7px] absolute top-[18px] left-[17px] bg-[#C6A15A]">
                 <p className=" text-[12px] text-white font-semibold">
                   {item?.label}
                 </p>
-              </div>
+              </div> */}
               <p className="text-white text-[18px] bottom-3 absolute left-3">
-                {item?.price}
+                {formatCurrency(item?.price)}
               </p>
             </div>
             <p className="font-semibold text-black text-[13px] mt-5">
@@ -276,7 +278,7 @@ function SearchContent() {
             </p>
             <div className="mt-[9px] flex items-center">
               <img src="/location1.svg" alt="" />
-              <p className="text-[12px] ml-[7px]">{item?.address}</p>
+              <p className="text-[12px] ml-[7px]">{item?.region}</p>
             </div>
             <div className="flex">
               <div className="flex items-center mt-[13px]">

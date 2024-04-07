@@ -131,7 +131,7 @@ const DirectSaleModal = ({ propertyId }) => {
           </div>
         </div>
       )}
-      ;
+      
     </>
   );
 };

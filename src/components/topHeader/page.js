@@ -272,53 +272,49 @@ export default function TopHeader() {
                     Kontakt
                   </p>
                 </div>
-                {pathname === "/register-for" ||
-                pathname === "/registration" ||
-                pathname === "/my-account" ? (
-                  <div className="flex w-[150px]">
-                    <img src="/Vector (2).svg" alt="" />
-                    <p
-                      className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${
-                        pathname === "/my-account"
-                          ? "text-[#D3A86B]"
-                          : "text-white"
-                      }`}
-                      onClick={() => router.push("/my-account")}
+                {(
+              <div className="flex items-center w-[400px]">
+                <img src="/group-165.svg" alt="" />
+                <p className="font-semibold ml-[11px] cursor-pointer">
+                  {!session?.user?.accessToken ? (
+                    <span
+                      className="hover:text-[#D3A86B] text-white"
+                      onClick={() => openModal()}
                     >
-                      Môj účet
-                    </p>
-                  </div>
-                ) : (
-                  <div className="flex items-center w-[400px]">
-                    <img src="/group-165.svg" alt="" />
+                      Prihlásenie
+                    </span>
+                  ) : (
+                    <div className="flex gap-4 items-center">
+                      <span
+                        className="hover:text-[#D3A86B] text-white"
+                        onClick={() => signOut({ callbackUrl: "/" })}
+                      >
+                        Odhlásiť
+                      </span>
 
-                    <p className="font-semibold ml-[11px] cursor-pointer">
-                      {!session?.user?.accessToken ? (
-                        <span
-                          className="hover:text-[#D3A86B] text-white"
-                          onClick={() => openModal()}
+                      <div className="flex w-[150px]">
+                        <img src="/Vector (2).svg" alt="" />
+                        <p
+                          className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
+                            }`}
+                          onClick={() => router.push("/my-account")}
                         >
-                          Prihlásenie
-                        </span>
-                      ) : (
-                        <span
-                          className="hover:text-[#D3A86B] text-white"
-                          onClick={() => signOut({ callbackUrl: "/" })}
-                        >
-                          Odhlásiť
-                        </span>
-                      )}
-                      {!session?.user?.accessToken && (
-                        <span
-                          className="hover:text-[#D3A86B] ml-3 text-white"
-                          onClick={() => openModalRegister()}
-                        >
-                          Registrácia
-                        </span>
-                      )}
-                    </p>
-                  </div>
-                )}
+                          Môj účet
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {!session?.user?.accessToken && (
+                    <span
+                      className="hover:text-[#D3A86B] ml-3 text-white"
+                      onClick={() => openModalRegister()}
+                    >
+                      Registrácia
+                    </span>
+                  )}
+                </p>
+              </div>
+            )}
               </div>
             </div>
           </div>

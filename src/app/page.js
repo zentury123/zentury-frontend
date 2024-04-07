@@ -17,8 +17,8 @@ export default function Home() {
   const [isVideo, setIsVideo] = useState(false);
   const [loading, setLoading] = useState(true);
 
-  const openModalVideo = () => {
-    setIsVideo(true);
+  const openModalVideo = (url) => {
+    setIsVideo(url);
   };
 
   const closeModalVideo = () => {
@@ -39,7 +39,7 @@ export default function Home() {
       <Partners />
       <Articals />
 
-      <VideoModal isOpen={isVideo} onClose={closeModalVideo} />
+      <VideoModal isOpen={isVideo} onClose={closeModalVideo}  />
     </div>
   );
 }

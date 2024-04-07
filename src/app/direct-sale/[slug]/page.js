@@ -2,6 +2,8 @@ import React from "react";
 import ImageGallery from "../../../components/Image-gallery/index";
 import Map from "../../../components/Map";
 import DirectSaleModal from "./_components/DirectSaleModal";
+import {formatCurrency} from "@/utils";
+
 export async function generateStaticParams() {
   const posts = await fetch(
     `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/all?saleType=direct`
@@ -35,7 +37,7 @@ const RealState = async ({ params }) => {
         </p>
         <div className="flex items-center mt-[40px]">
           <p className="text-[29px] font-semibold">Cena:</p> &nbsp;
-          <p className="text-[29px]"> {data?.price}€</p>
+          <p className="text-[29px]"> {formatCurrency(data?.price)}</p>
         </div>
         <DirectSaleModal propertyId={data?._id} />
         <div className="grid grid-cols-12 mt-[27px] lg:gap-10 gap-5">

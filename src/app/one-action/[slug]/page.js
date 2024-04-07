@@ -2,6 +2,7 @@ import React from "react";
 import ImageGallery from "../../../components/Image-gallery/index";
 import Map from "../../../components/Map";
 import RegisterModal from "./_components/RegisterModal";
+import {formatCurrency} from "@/utils";
 
 export async function generateStaticParams() {
   const posts = await fetch(
@@ -54,8 +55,7 @@ export default async function OneAction({ params }) {
                   Miesto dražby:
                 </p>
                 <p className="text-[#44525E] text-[12px] text-end">
-                  Veľký salónik na 1. poschodí hotela Arcade, Námestie SNP 5,
-                  974 01 Banská Bystrica
+                Piaristická 1, 949 01 Nitra
                 </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
@@ -90,7 +90,7 @@ export default async function OneAction({ params }) {
                 <p className="text-[13px] font-semibold">
                   Cena zistená znaleckým posudkom:
                 </p>
-                <p className="text-[#44525E] text-[12px]">{data?.price} €</p>
+                <p className="text-[#44525E] text-[12px]">{formatCurrency(data?.price)}</p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">
                 <p className="text-[13px] font-semibold">Dražobná zábezpeka:</p>

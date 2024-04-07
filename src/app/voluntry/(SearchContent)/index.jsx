@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import useGetRealState from "@/customHooks/useGetRealState";
 import useDebounce from "../../../customHooks/useDebounce";
 import Spinner from "@/components/Spinner";
+import { formatCurrency } from "@/utils";
 
 
 const region = [
@@ -105,7 +106,7 @@ function SearchContent() {
   const [pageNumber, setPageNumber] = useState(1);
 
   // Fetching real estate data based on the current filter settings
-  const { data,pagination, loading } = useGetRealState(
+  const { data, pagination, loading } = useGetRealState(
     "auction",
     priceRange,
     selectedRegion,
@@ -147,7 +148,7 @@ function SearchContent() {
     deboucePriceRange(newValue);
   };
 
-  function handlePageNumber(page){
+  function handlePageNumber(page) {
     setPageNumber(page)
   }
 
@@ -174,9 +175,8 @@ function SearchContent() {
             <p>Cena</p>
           </div>
           <div
-            className={`fixed ${
-              isOpen ? "block" : "hidden"
-            } top-0 left-0 w-full h-full bg-black opacity-0 z-10`}
+            className={`fixed ${isOpen ? "block" : "hidden"
+              } top-0 left-0 w-full h-full bg-black opacity-0 z-10`}
             onClick={() => setIsOpen(false)}
           ></div>
           {isOpen && (
@@ -245,7 +245,7 @@ function SearchContent() {
         </div>
       </div>
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
-        {data &&data?.map((item) => (
+        {data && data?.map((item) => (
           <div
             onClick={() => router.push(`/one-action/${item.slug}`)}
             className="p-[12px] bg-[#F9FCFF] border border-[#C7D5E1] rounded-[18px] cursor-pointer"
@@ -258,11 +258,11 @@ function SearchContent() {
               />
               <div className="px-[15px] py-[5px] border border-white rounded-[7px] absolute top-[18px] left-[17px] bg-[#C6A15A]">
                 <p className=" text-[12px] text-white font-semibold">
-                  {item?.label}
+                  {item?.typeOfAuction}
                 </p>
               </div>
               <p className="text-white text-[18px] bottom-3 absolute left-3">
-                {item?.price}
+                {formatCurrency(item?.price)}
               </p>
             </div>
             <p className="font-semibold text-black text-[13px] mt-5">

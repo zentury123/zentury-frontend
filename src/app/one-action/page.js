@@ -24,8 +24,7 @@ export default function OneAction() {
                   Miesto dražby:
                 </p>
                 <p className="text-[#44525E] text-[12px] text-end">
-                  Veľký salónik na 1. poschodí hotela Arcade, Námestie SNP 5,
-                  974 01 Banská Bystrica
+                Piaristická 1, 949 01 Nitra
                 </p>
               </div>
               <div className="flex justify-between items-center pb-3 border-b border-[#C7D5E1] mt-[13px]">

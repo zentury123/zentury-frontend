@@ -53,7 +53,7 @@ export default function ActionCenter({ openModalVideo }) {
               </p>
             </div>
             <div
-              onClick={() => openModalVideo()}
+              onClick={() => openModalVideo("https://www.youtube.com/embed/QYmtRZaEI-Y")}
               className="bg-[#010101] w-[262px] h-[60px] rounded-[18px] cursor-pointer flex justify-center items-center lg:ml-[39px] lg:mt-0 mt-[23px]"
             >
               <img src="/Video.svg" alt="" />

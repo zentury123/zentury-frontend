@@ -12,6 +12,7 @@ import Footer from "@/components/footer";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import Link from "next/link";
 
 export const metadata = {
   title: "Zentury",
@@ -31,6 +32,9 @@ export default function RootLayout({ children }) {
             <Footer />
           </div>
         </NextAuthProvider>
+        <Link href='/voluntry' className="fixed left-6 bottom-6">
+          <img src="/auctions.svg" />
+        </Link>
       </body>
     </html>
   );

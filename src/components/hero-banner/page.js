@@ -48,7 +48,7 @@ export default function HeroBanner({ openModalVideo }) {
           </div>
         </div>
         <div
-          onClick={() => openModalVideo()}
+          onClick={() => openModalVideo("https://www.youtube.com/embed/HTPT7A5F_u4")}
           className="w-[247px]  bg-gradient-to-b from-[#D3A86B] to-[#A3784A] flex justify-center items-center right-0 h-[62px] cursor-pointer absolute sm:bottom-[20px] bottom-[40px] rounded-l-[11px]"
         >
           <img src="/play.svg" alt="" />
