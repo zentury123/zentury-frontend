@@ -7,6 +7,8 @@ import ResetPassword from "../resetPassword";
 import VerificationCode from "../verificationCode";
 import UpdatePassword from "../password";
 import { useSession, signOut } from "next-auth/react";
+import Link from "next/link";
+
 export default function Navigation() {
   const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
@@ -57,7 +59,7 @@ export default function Navigation() {
     setUpdatePassword(false);
   };
   const pathname = usePathname();
-
+console.log(session)
   return (
     <div>
       <div className="lg:block hidden">
@@ -225,6 +227,10 @@ export default function Navigation() {
         onClose={closeModalUpdatePassword}
         setIsOpen={setIsOpen}
       />
+
+      {session && <Link href='/my-auctions' className="fixed left-6 bottom-6 z-[999999]">
+        <img src="/auctions.svg" />
+      </Link>}
     </div>
   );
 }

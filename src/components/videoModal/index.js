@@ -7,7 +7,7 @@ const VideoModal = ({ isOpen, onClose }) => {
     <>
       {Boolean(isOpen) && (
         <div className="fixed inset-0 flex items-center justify-center z-50 ">
-          <div className="fixed inset-0 bg-black opacity-50 "></div>
+          <div className="fixed inset-0 bg-black opacity-50 " onClick={onClose}></div>
           <div className="bg-white  rounded-[30px] z-50 max-w-[1256px] w-[95%] h-[80vh]  overflow-auto">
             <div className="flex justify-end relative">
               <svg

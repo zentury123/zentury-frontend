@@ -287,12 +287,12 @@ function SearchContent() {
                   {item.typeOfRealEstate}
                 </p>
               </div>
-              <div className="flex items-center mt-[13px] ml-[40%]">
+              {/* <div className="flex items-center mt-[13px] ml-[40%]">
                 <img src="/calendar.svg" alt="" />
                 <p className="text-[#44525E] text-[12px] ml-[7px] font-semibold">
                   {new Date(item.dateOfAuction).toLocaleDateString()}
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         ))}

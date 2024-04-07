@@ -82,13 +82,17 @@ const RegisterModal = ({ id }) => {
             <form ref={formRef} onSubmit={handleSubmit}>
               <div className="grid sm:grid-cols-2 grid-cols-1 mt-[29px] gap-[30px]">
                 <div>
-                  <input
+                  <select
                     type="text"
                     required
                     name="typeOfPerson"
                     placeholder="Typ osoby"
-                    className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px]"
-                  />
+                    className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] bg-transparent indent-[30px]"
+                  >
+                    <option value={"Právnická osoba"}>Právnická osoba</option>
+                    <option value={"Fizická osoba"}>Fizická osoba</option>
+
+                  </select>
                   <input
                     type="text"
                     name="ico"
@@ -194,12 +198,17 @@ const RegisterModal = ({ id }) => {
                   <p className="text-[#44525E] text-[10px] mt-3 ">
                     Napríklad: Aukčná spoločnosť
                   </p>
-                  <input
+                  <select
                     type="text"
                     name="representative"
                     placeholder="Zastúpená"
-                    className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[15px]"
-                  />
+                    className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] bg-transparent indent-[30px] mt-[15px]"
+                  >
+                    <option value={"Štatutárny zástupca"}>Štatutárny zástupca</option>
+                    <option value={"Prokurista"}>Prokurista</option>
+                    <option value={"Splnomocnenie"}>Splnomocnenie</option>
+
+                  </select>
                   <input
                     type="text"
                     name="lastName"
@@ -275,9 +284,8 @@ const RegisterModal = ({ id }) => {
               </div>
               <div className=" w-full flex justify-center">
                 <button
-                  className={` text-white rounded-lg p-3 w-full mt-2 ${
-                    permission ? "bg-black" : "bg-gray-300"
-                  }`}
+                  className={` text-white rounded-lg p-3 w-full mt-2 ${permission ? "bg-black" : "bg-gray-300"
+                    }`}
                   disabled={!permission}
                 >
                   {loading ? "Registrácia" : "Registrovať"}

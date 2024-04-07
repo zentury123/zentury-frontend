@@ -34,6 +34,7 @@ export default function RegisterFor() {
           Administrátor vým musí pred vždy overiť vaše zúčastnenia na dražbe
         </p>
         <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-y-px sm:gap-[72px]  mt-[25px]">
+
           {data?.map((item) => (
             <div className="p-[12px] border-[#C7D5E1] border rounded-[29px] mt-[21px]">
               <div className="flex">
@@ -63,7 +64,8 @@ export default function RegisterFor() {
             </div>
           ))}
         </div>
-        <Pagination totalPages={pagination.pages} count={pagination.count} currentPage={pageNumber} setPageNumber={handlePageNumber} />
+        { data.length<1 && "Neuskutočnili sa žiadne aukcie."}
+     { data.length>0 &&   <Pagination totalPages={pagination.pages} count={pagination.count} currentPage={pageNumber} setPageNumber={handlePageNumber} />}
 
       </div>
 
