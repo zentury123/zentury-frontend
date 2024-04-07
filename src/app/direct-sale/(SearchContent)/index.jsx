@@ -277,12 +277,12 @@ function SearchContent() {
               {item?.title}
             </p>
             <div className="mt-[9px] flex items-center">
-              <img src="/location1.svg" alt="" />
+              <img src="/location1.svg" alt="location-icon" />
               <p className="text-[12px] ml-[7px]">{item?.region}</p>
             </div>
             <div className="flex">
               <div className="flex items-center mt-[13px]">
-                <img src="/icon-home.svg" alt="" />
+                <img src="/icon-home.svg" alt="home-icon" />
                 <p className="text-[#44525E] text-[12px] ml-[7px] font-semibold">
                   {item.typeOfRealEstate}
                 </p>

@@ -15,9 +15,15 @@ import "swiper/css/navigation";
 import Link from "next/link";
 
 export const metadata = {
-  title: "Zentury",
-  description: "Zentury",
+  title: 'Dražobná spoločnosť Zentury',
+  description: 'Zísajte nehnuteľnosť v dražbe | Zentury',
+  keywords: 'dražby, Zentury, nehnuteľnosti',
+  robots: 'index, follow',
+  contentType: 'text/html; charset=utf-8',
+  language: 'English',
+  author: 'Zentury',
 };
+
 
 export default function RootLayout({ children }) {
   return (
