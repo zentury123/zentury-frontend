@@ -119,11 +119,11 @@ export default function TopHeader() {
           </div>
         </div>
         <div className="xl:col-span-6 col-span-7  hidden lg:flex items-center justify-between">
-          <div className="flex items-cente">
+          <div className="flex items-center">
             <img src="/Exclude.svg" alt="" />
             <p className="ml-3 text-white">Piaristická 1, 949 01 Nitra</p>
           </div>
-          <div className="flex items-cente">
+          <div className="flex items-center">
             <img src="/Vector.svg" alt="" />
             <p className="ml-3 text-white">
               <a
@@ -135,7 +135,7 @@ export default function TopHeader() {
               </a>
             </p>
           </div>
-          <div className="flex items-cente">
+          <div className="flex items-center">
             <img src="/world.svg" alt="" />
             <p className="ml-3 ">
               <a
@@ -150,7 +150,7 @@ export default function TopHeader() {
           </div>
         </div>
         <div className="xl:col-span-6 col-span-5 lg:flex hidden items-center justify-end">
-          <div className="flex items-cente">
+          <div className="flex items-center">
             <img src="/clock.svg" alt="" />
             <p className="ml-3 text-white">Po až Pi&nbsp; 08:00 - 17:00</p>
           </div>

@@ -59,7 +59,7 @@ export default function Navigation() {
     setUpdatePassword(false);
   };
   const pathname = usePathname();
-console.log(session)
+
   return (
     <div>
       <div className="lg:block hidden">
