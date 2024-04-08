@@ -1,6 +1,7 @@
 "use client";
 import React, { useRef, useState } from "react";
 import useRegisterForAuction from "@/customHooks/useRegisterForAuction";
+import { RadioGroup } from "@mui/material";
 const RegisterModal = ({ id }) => {
   const [isOpen, setIsOpen] = useState(false);
   const { loading, registerForAuction } = useRegisterForAuction();
@@ -33,7 +34,7 @@ const RegisterModal = ({ id }) => {
         typeOfPerson: typeOfPerson.value,
         firstName: firstName.value,
         lastName: lastName.value,
-        security: security.value,
+        security: "true",
         companyName: companyName.value,
         ico: ico.value,
         representative: representative.value,
@@ -141,9 +142,9 @@ const RegisterModal = ({ id }) => {
                         <input
                           type="radio"
                           className=""
-                          value={"SecurityType1"}
-                          name="security"
-                          id="security"
+                          value='V hotovosti'
+                          name="ownership"
+                          id="ownership"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           V hotovosti
@@ -153,9 +154,9 @@ const RegisterModal = ({ id }) => {
                         <input
                           type="radio"
                           className=""
-                          name="security"
-                          value={"SecurityType2"}
-                          id="security"
+                          name="ownership"
+                          value={" Na účet"}
+                          id="ownership"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Na účet
@@ -165,9 +166,9 @@ const RegisterModal = ({ id }) => {
                         <input
                           type="radio"
                           className=""
-                          value={"SecurityType3"}
-                          name="security"
-                          id="security"
+                          value={" Banková záruka"}
+                          name="ownership"
+                          id="ownership"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Banková záruka
@@ -175,11 +176,11 @@ const RegisterModal = ({ id }) => {
                       </div>
                       <div className="flex mt-2">
                         <input
-                          value={"SecurityType4"}
+                          value={"Notárska úschova"}
                           type="radio"
                           className=""
-                          name="security"
-                          id="security"
+                          name="ownership"
+                          id="ownership"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Notárska úschova
@@ -245,32 +246,32 @@ const RegisterModal = ({ id }) => {
                     <p className="text-[#44525E] text-[12px]">
                       Zábezpeka zložená:
                     </p>
-                    <div className="ml-[22px]">
+                    <RadioGroup className="ml-[22px]">
                       <div className="flex">
-                        <input type="checkbox" className="" name="ownership" />
+                        <input type="radio" className="" value='V hotovosti' name="ownership" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           V hotovosti
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="checkbox" className="" />
+                        <input type="radio" className="" value='   Na účet' name="ownership"  />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Na účet
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="checkbox" className="" />
+                        <input type="radio" className="" value=' Banková záruka' name="ownership"  />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Banková záruka
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="checkbox" className="" />
+                        <input type="radio" className="" value=' Notárska úschova'  name="ownership" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Notárska úschova
                         </p>
                       </div>
-                    </div>
+                    </RadioGroup>
                   </div>
                   <div className="flex mt-[75px]">
                     <input

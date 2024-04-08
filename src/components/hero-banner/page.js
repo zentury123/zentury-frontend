@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 
@@ -6,14 +7,18 @@ export default function HeroBanner({ openModalVideo }) {
   return (
     <div>
       <div className=" sm:h-[calc(100vh-50px)] h-[calc(100vh-50px)]  relative">
-        <img
+        <Image
           src="/Hero Banner.png"
           alt=""
+          width={1920}
+          height={800}
           className="h-[100%] object-cover w-full sm:block hidden "
         />
-        <img
+        <Image
           src="/Hero Banner (1).png"
           alt=""
+          width={1920}
+          height={800}
           className="h-[100%] object-cover w-full sm:hidden "
         />
         <div className="left-0 right-0 top-0 bottom-0 h-[100%]  max-w-[1000px] m-auto absolute flex sm:justify-center flex-col items-center">
