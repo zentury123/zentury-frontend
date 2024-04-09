@@ -10,6 +10,7 @@ const nextConfig = {
  reactStrictMode: false,
   sassOptions: {
     includePaths: [path.join(__dirname, "styles")],
+    
     session: {
       strategy: "jwt", // Choose your session strategy (e.g., jwt, session)
     },

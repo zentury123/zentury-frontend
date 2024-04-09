@@ -7,6 +7,8 @@ import ResetPassword from "../resetPassword";
 import VerificationCode from "../verificationCode";
 import UpdatePassword from "../password";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
+
 export default function Footer() {
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -56,7 +58,17 @@ export default function Footer() {
     setUpdatePassword(false);
   };
 
-  console.log(`${JSON.stringify(session?.user)} this is user`);
+
+  function scrollTop(){
+
+    setTimeout(() => {
+      window.scroll({
+        top: 0,
+        behavior:'smooth'
+      });
+    }, 100);
+
+  }
   return (
     <div>
       <div className="xl:pl-[75px] pl-[30px] xl:pr-[68px] pr-[30px] pt-[81px] pb-[22px] bg-[#010101]  text-white">
@@ -70,15 +82,17 @@ export default function Footer() {
               <p className="text-white leading-[24px] text-[15px] mt-2">
                 Využite našu dražobnú spoločnosť Zentury.
               </p>
-              <div
-                onClick={() => router.push("/contact")}
+              <Link
+
+                href="/contact"
+                onClick={scrollTop}
                 className="bg-[#010101] rounded-[18px] py-[10px] px-[20px] w-fit flex items-center mt-[19px]"
               >
                 <img src="/message.svg" alt="" />
                 <p className="text-[13px] font-semibold text-white ml-[10px]">
                   Kontakt
                 </p>
-              </div>
+              </Link>
             </div>
           </div>
           <div className="col-span-4 mt-[50px] lg:block hidden">
@@ -180,15 +194,16 @@ export default function Footer() {
               <p className="text-white leading-[24px] text-[15px] mt-2">
                 Využite našu dražobnú spoločnosť Zentury.
               </p>
-              <div
-                onClick={() => router.push("/contact")}
+              <Link
+                href="/contact"
+                onClick={scrollTop}
                 className="bg-[#010101] rounded-[18px] py-[10px] px-[20px] w-fit flex items-center mt-[19px] cursor-pointer"
               >
                 <img src="/message.svg" alt="" />
                 <p className="text-[13px] font-semibold text-white ml-[10px]">
                   Kontakt
                 </p>
-              </div>
+              </Link>
             </div>
           </div>
           <div className="md:col-span-4 col-span-12 mt-[50px] lg:hidden">

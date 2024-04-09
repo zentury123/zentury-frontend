@@ -2,11 +2,15 @@
 import React, { useRef, useState } from "react";
 import useRegisterForAuction from "@/customHooks/useRegisterForAuction";
 import { RadioGroup } from "@mui/material";
+import { useSession } from "next-auth/react";
+import { Toast } from "@/components/Toaster";
 const RegisterModal = ({ id }) => {
+
   const [isOpen, setIsOpen] = useState(false);
   const { loading, registerForAuction } = useRegisterForAuction();
   const formRef = useRef(null);
   const [permission, setPermission] = useState(false);
+  const { data: session } = useSession();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const {
@@ -20,6 +24,7 @@ const RegisterModal = ({ id }) => {
       security,
       companyName,
       ico,
+      city,
       representative,
       street,
       houseNumber,
@@ -34,9 +39,10 @@ const RegisterModal = ({ id }) => {
         typeOfPerson: typeOfPerson.value,
         firstName: firstName.value,
         lastName: lastName.value,
-        security: "true",
+        security: security.value,
         companyName: companyName.value,
         ico: ico.value,
+        city: city.value,
         representative: representative.value,
         street: street.value,
         houseNumber: houseNumber.value,
@@ -45,10 +51,18 @@ const RegisterModal = ({ id }) => {
     );
     setIsOpen(false);
   };
+
+  function handleOpen() {
+    if (session) {
+      setIsOpen(true)
+    } else {
+      Toast.fire({ icon: "error", title: "Pre registráciu na dražbu sa musíte prihlásiť" });
+    }
+  }
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
         className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[30px]"
       >
         <p className="font-semibold text-[12px] ml-[10px]">
@@ -85,7 +99,7 @@ const RegisterModal = ({ id }) => {
                 <div>
                   <select
                     type="text"
-                    required
+                    required={true}
                     name="typeOfPerson"
                     defaultValue="Právnická osoba"
                     placeholder="Typ osoby"
@@ -98,7 +112,7 @@ const RegisterModal = ({ id }) => {
                   <input
                     type="text"
                     name="ico"
-                    required
+                    required={true}
                     placeholder="IČO"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
@@ -108,28 +122,28 @@ const RegisterModal = ({ id }) => {
                   <input
                     type="text"
                     name="firstName"
-                    required
+                    required={true}
                     placeholder="Meno"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[15px]"
                   />
                   <input
                     type="text"
                     name="street"
-                    required
+                    required={true}
                     placeholder="Ulica"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
                     type="text"
                     name="postalCode"
-                    required
+                    required={true}
                     placeholder="PSČ"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
                     type="text"
                     name="email"
-                    required
+                    required={true}
                     placeholder="E-mail"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
@@ -140,11 +154,12 @@ const RegisterModal = ({ id }) => {
                     <div className="ml-[22px]">
                       <div className="flex">
                         <input
+                         required={true}
                           type="radio"
                           className=""
                           value='V hotovosti'
-                          name="ownership"
-                          id="ownership"
+                          name="security"
+                          id="security"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           V hotovosti
@@ -152,11 +167,12 @@ const RegisterModal = ({ id }) => {
                       </div>
                       <div className="flex mt-2">
                         <input
+                         required={true}
                           type="radio"
                           className=""
-                          name="ownership"
+                          name="security"
                           value={" Na účet"}
-                          id="ownership"
+                          id="security"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Na účet
@@ -164,11 +180,12 @@ const RegisterModal = ({ id }) => {
                       </div>
                       <div className="flex mt-2">
                         <input
+                         required={true}
                           type="radio"
                           className=""
                           value={" Banková záruka"}
-                          name="ownership"
-                          id="ownership"
+                          name="security"
+                          id="security"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Banková záruka
@@ -176,11 +193,12 @@ const RegisterModal = ({ id }) => {
                       </div>
                       <div className="flex mt-2">
                         <input
+                         required={true}
                           value={"Notárska úschova"}
                           type="radio"
                           className=""
-                          name="ownership"
-                          id="ownership"
+                          name="security"
+                          id="security"
                         />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Notárska úschova
@@ -193,7 +211,7 @@ const RegisterModal = ({ id }) => {
                   <input
                     name="companyName"
                     type="text"
-                    required
+                    required={true}
                     placeholder="Názov spoločnosti"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px]"
                   />
@@ -201,6 +219,7 @@ const RegisterModal = ({ id }) => {
                     Napríklad: Aukčná spoločnosť
                   </p>
                   <select
+                   required={true}
                     type="text"
                     name="representative"
                     defaultValue="Štatutárny zástupca"
@@ -213,6 +232,7 @@ const RegisterModal = ({ id }) => {
 
                   </select>
                   <input
+                   required={true}
                     type="text"
                     name="lastName"
                     placeholder="Priezvisko"
@@ -220,25 +240,30 @@ const RegisterModal = ({ id }) => {
                   />
 
                   <input
+                   required={true}
                     type="text"
                     name={"houseNumber"}
                     placeholder="Číslo ulice"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
+                   required={true}
                     type="text"
                     placeholder="Mesto"
                     name="city"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
+                   required={true}
                     name="telephone"
                     type="text"
                     placeholder="Telefón"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
                   <input
+                   required={true}
                     type="text"
+                    name="ownership"
                     placeholder="Vlastníctvo"
                     className="w-full h-[44px] rounded-[18px] border border-[#C7D5E1] indent-[30px] mt-[38px]"
                   />
@@ -246,27 +271,27 @@ const RegisterModal = ({ id }) => {
                     <p className="text-[#44525E] text-[12px]">
                       Zábezpeka zložená:
                     </p>
-                    <RadioGroup className="ml-[22px]">
+                    <RadioGroup defaultValue={"V hotovosti"} className="ml-[22px]">
                       <div className="flex">
-                        <input type="radio" className="" value='V hotovosti' name="ownership" />
+                        <input type="radio"  required={true} className="" value='V hotovosti' name="security" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           V hotovosti
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="radio" className="" value='   Na účet' name="ownership"  />
+                        <input type="radio"  required={true} className="" value='Na účet' name="security" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Na účet
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="radio" className="" value=' Banková záruka' name="ownership"  />
+                        <input type="radio"  required={true} className="" value='Banková záruka' name="security" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Banková záruka
                         </p>
                       </div>
                       <div className="flex mt-2">
-                        <input type="radio" className="" value=' Notárska úschova'  name="ownership" />
+                        <input type="radio"  required={true} className="" value='Notárska úschova' name="security" />
                         <p className="ml-[12px] text-[12px] font-semibold text-[#44525E]">
                           Notárska úschova
                         </p>
@@ -275,6 +300,7 @@ const RegisterModal = ({ id }) => {
                   </div>
                   <div className="flex mt-[75px]">
                     <input
+                     required={true}
                       type="checkbox"
                       id="custom-checkbox"
                       onChange={(e) => setPermission(e.target.checked)}

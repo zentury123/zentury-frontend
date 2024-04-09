@@ -3,6 +3,7 @@ import React from "react";
 import useContact from "@/customHooks/useContact";
 
 
+
 export default function ContactUs() {
   const { loading, sendContactQuery } = useContact();
 
@@ -27,6 +28,7 @@ export default function ContactUs() {
 
   return (
     <div>
+
       <div className="md:mt-[158px] mt-[51px]">
         <p className="uppercase gradient sm:pl-[84px] sm:text-start text-center font-semibold">
           zentury dražby

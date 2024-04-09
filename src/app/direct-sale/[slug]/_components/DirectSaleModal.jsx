@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import useDirectSaleContact from "@/customHooks/useDirectSaleContact";
+import { Toast } from "@/components/Toaster";
 
 const DirectSaleModal = ({ propertyId }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,10 +30,18 @@ const DirectSaleModal = ({ propertyId }) => {
   function handleChange(e) {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   }
+  function handleOpen(params) {
+    if(session){
+      setIsOpen(true)
+    }else{
+      Toast.fire({ icon: "error", title: "Pre registráciu na dražbu sa musíte prihlásiť" });
+    }
+  
+  }
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={handleOpen}
         className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[30px]"
       >
         Kontaktujte nás
