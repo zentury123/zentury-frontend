@@ -66,7 +66,7 @@ const RegisterModal = ({ id }) => {
         className="text-[white] bg-gradient-to-b from-[#D3A86B] to-[#A3784A] cursor-pointer w-[308px] h-[44px] rounded-full flex justify-center items-center  mt-[30px]"
       >
         <p className="font-semibold text-[12px] ml-[10px]">
-          Chcem sa zaregistrovať na dražbu
+        Prihlásiť sa na dražbu
         </p>
       </button>
       {isOpen && (

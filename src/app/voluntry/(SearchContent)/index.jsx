@@ -152,11 +152,11 @@ function SearchContent() {
     setPageNumber(page)
   }
 
-  if (loading) {
-    return (<div className="flex items-center justify-center h-[70vh]">
-      <Spinner />
-    </div>)
-  }
+  // if (loading) {
+  //   return (<div className="flex items-center justify-center h-[70vh]">
+  //     <Spinner />
+  //   </div>)
+  // }
 
   return (
     <div>
@@ -244,6 +244,10 @@ function SearchContent() {
           </select>
         </div>
       </div>
+      { loading ? 
+      <div className="flex items-center justify-center h-[70vh]">
+      <Spinner />
+    </div>:
       <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1  mt-[31px] gap-6">
         {data && data?.map((item) => (
           <div
@@ -289,6 +293,7 @@ function SearchContent() {
           </div>
         ))}
       </div>
+}
       <Pagination totalPages={pagination.pages} count={pagination.count} currentPage={pageNumber} setPageNumber={handlePageNumber} />
     </div>
   );

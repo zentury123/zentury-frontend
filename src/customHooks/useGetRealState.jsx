@@ -51,7 +51,7 @@ const useGetRealState = (
     page,
     keywords,
   ]);
-console.log(pagination)
+
   return { data, pagination:pagination, loading };
 };
 

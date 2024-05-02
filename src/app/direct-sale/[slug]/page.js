@@ -20,7 +20,7 @@ const RealState = async ({ params }) => {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/${slug}`,
       {
-        next: { revalidate: 3600 }, // Revalidate every hour
+        next: { revalidate: 30 }, // Revalidate every hour
       }
     );
     const response = await res.json();
@@ -28,7 +28,7 @@ const RealState = async ({ params }) => {
     return d;
   };
   const data = await fetchData();
-console.log(data?.document1?.fileName)
+
   return (
     <div className="bg-white min-h-[100vh]">
       <div className="lg:mt-[190px] mt-[90px] text-black xl:px-[81px] px-[24px]">
@@ -54,6 +54,8 @@ console.log(data?.document1?.fileName)
           </div>
         </div>
       </div>
+
+      
     </div>
   );
 };

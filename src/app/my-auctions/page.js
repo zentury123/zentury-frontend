@@ -31,7 +31,7 @@ export default function RegisterFor() {
         </p>
         <p className="max-w-[512px] text-[12px] leading-[18px] text-[#44525E] mt-[21px]">
           V tejto časti uvidíte všetky nehnuteľnosti, na ktoré ste prihlásení.
-          Administrátor vým musí pred vždy overiť vaše zúčastnenia na dražbe
+          Administrátor Vám musí pred vždy overiť vaše zúčastnenia na dražbe
         </p>
         <div className="grid sm:grid-cols-2 grid-cols-1 sm:gap-y-px sm:gap-[72px]  mt-[25px]">
 

@@ -12,7 +12,7 @@ const useGetSingleRealState = (realStateSlug) => {
         const res = await fetch(
           `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/${realStateSlug}`,
           {
-            next: { revalidate: 3600 }, // Revalidate every hour
+            next: { revalidate: 30 }, // Revalidate every hour
           }
         );
 

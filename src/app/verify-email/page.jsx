@@ -14,7 +14,7 @@ export default async function VerifyEmail({ searchParams }) {
   return (
     <>
       <div className=' flex justify-center items-center h-[500px] flex-col'>
-        <h1 className=' block text-center text-[#D3A86B]  text-[26px] lg:text-[50px] font-bold'>vVáš účet bol úspešne vytvorený.
+        <h1 className=' block text-center text-[#D3A86B]  text-[26px] lg:text-[50px] font-bold'>Váš účet bol úspešne vytvorený.
         </h1>
     <LoginButton />
       </div>

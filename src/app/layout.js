@@ -12,7 +12,7 @@ import Footer from "@/components/footer";
 
 import "swiper/css";
 import "swiper/css/navigation";
-
+import 'react-image-lightbox/style.css';
 
 export const metadata = {
   title: 'Dražobná spoločnosť Zentury',

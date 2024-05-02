@@ -24,6 +24,7 @@
     "react": "^18",
     "react-big-calendar": "^1.10.3",
     "react-dom": "^18",
+    "react-image-lightbox": "^5.1.4",
     "sweetalert2": "^11.10.7",
     "swiper": "^11.1.0"
   },

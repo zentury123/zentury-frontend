@@ -3,10 +3,24 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
+import Lightbox from 'react-image-lightbox';
 
 const ImageGallery = ({ galleryImages }) => {
   const [thumbsSwiper, setThumbsSwiper] = useState('');
-  console.log(galleryImages,"images")
+
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const handleImageClick = (index) => {
+    console.log(index)
+    setCurrentImageIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const handleCloseLightbox = () => {
+    setLightboxOpen(false);
+  };
+
   return (
     <>
       <Swiper
@@ -22,9 +36,9 @@ const ImageGallery = ({ galleryImages }) => {
       >
         {galleryImages && galleryImages.map((gallery, i) => {
           return (
-            <SwiperSlide>
+            <SwiperSlide onClick={() => handleImageClick(i)}>
               <Image unoptimized={true} src={`${gallery}`}
-               fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw" alt={`gallery-image-${i}`} />
+                fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw" alt={`gallery-image-${i}`} />
             </SwiperSlide>
           )
         })}
@@ -43,11 +57,26 @@ const ImageGallery = ({ galleryImages }) => {
           return (
             <SwiperSlide>
               <Image unoptimized={true} src={`${gallery}`}
-               fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw" className="rounded-md" alt={`gallery-thumb-${i}`} />
+                fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 75vw" className="rounded-md" alt={`gallery-thumb-${i}`} />
             </SwiperSlide>
           )
         })}
       </Swiper>
+
+
+      {lightboxOpen && galleryImages && (
+        <Lightbox
+          mainSrc={galleryImages[currentImageIndex]}
+          nextSrc={galleryImages[(currentImageIndex + 1) % galleryImages.length]}
+          prevSrc={galleryImages[(currentImageIndex + galleryImages.length - 1) % galleryImages.length]}
+          onCloseRequest={handleCloseLightbox}
+          onMovePrevRequest={() =>
+            setCurrentImageIndex((currentImageIndex + galleryImages.length - 1) % galleryImages.length)
+          }
+          onMoveNextRequest={() => setCurrentImageIndex((currentImageIndex + 1) % galleryImages.length)}
+        />
+      )}
+
       <style>
         {`
                 img{

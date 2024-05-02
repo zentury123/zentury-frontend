@@ -108,8 +108,44 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             <p>Dražobný kalendár</p>
           </div>
 
-          <div className="font-semibold  flex justify-end mt-[23px] text-white">
-            <p>Služby</p>
+          <div className="font-semibold  flex justify-end mt-[23px] text-white relative">
+            <p onClick={() => setShowMenu(!showMenu)} className="text-right block w-full">Služby</p>
+            {showMenu && (
+              <div className="fixed h-full w-full bg-transparent left-0"     onClick={() => setShowMenu(false)}>
+                <div
+                  className="  z-[9999] "
+                  onClick={() => setShowMenu(false)}
+                />
+                <div className="w-[305px] bg-[black] p-[17px] rounded-[7px] absolute top-[65px]">
+                  <p
+                    onClick={() => router.push("/voluntry")}
+                    className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B]"
+                  >
+                    Dobrovolné dražba
+                  </p>
+
+                  <p
+                    onClick={() => router.push("/direct-sale")}
+                    className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B] mt-[15px]"
+                  >
+                    Priamy predaj
+                  </p>
+                  <p className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B] mt-[15px]">
+                    Vymáhanie pohľadávok
+                  </p>
+                  <a href="https://zentury.sk" target="__blnak">
+                    <p className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B] mt-[15px]">
+                      Sprostredkovanie právneho poradenstva
+                    </p>
+                  </a>
+                  <a href="https://zentury.sk" target="__blnak">
+                    <p className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B] mt-[15px]">
+                      Ekonomické služby
+                    </p>
+                  </a>
+                </div>
+              </div>
+            )}
           </div>
           <div className="flex justify-end mt-[23px] ">
             <p
@@ -158,7 +194,7 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             </div>
           ) : (
             <div className="flex gap-4 items-end flex-col mt-[15px]">
-                      <div className="flex ">
+              <div className="flex ">
                 <img src="/Vector (2).svg" alt="" />
                 <p
                   className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
@@ -175,7 +211,7 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
                 Odhlásiť
               </span>
 
-      
+
             </div>
           )}
           {!session?.user?.accessToken && (

@@ -20,7 +20,7 @@ export default async function OneAction({ params }) {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/real-estate/${slug}`,
       {
-        next: { revalidate: 3600 }, // Revalidate every hour
+        next: { revalidate: 30 }, // Revalidate every hour
       }
     );
     const response = await res.json();
