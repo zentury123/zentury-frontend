@@ -2,9 +2,11 @@
 import React, { useState } from "react";
 import useDirectSaleContact from "@/customHooks/useDirectSaleContact";
 import { Toast } from "@/components/Toaster";
+import { useSession } from "next-auth/react";
 
 const DirectSaleModal = ({ propertyId }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
 
   const [formData, setFormData] = React.useState({
     id: propertyId,
