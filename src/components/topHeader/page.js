@@ -79,6 +79,8 @@ export default function TopHeader() {
   const toggleDrawer = () => {
     setDrawer(!drawer);
   };
+
+
   return (
     <div className="">
       <div className="grid lg:grid-cols-12 grid-cols-1 lg:h-[50px] sm:h-[60px] xl:px-[56px] px-[20px] bg-[#010101] ">
@@ -88,23 +90,21 @@ export default function TopHeader() {
             <img
               src="/check.svg"
               alt=""
-              className={`w-[20px] h-[15px] mr-[25px] ${
-               pathname === "/register-for" ||
-               pathname === "/my-account"
+              className={`w-[20px] h-[15px] mr-[25px] ${pathname === "/register-for" ||
+                  pathname === "/my-account"
                   ? "block"
                   : "hidden"
-              } `}
+                } `}
               onClick={() => router.push("/register-for")}
             />
             <img
               src="/Vector (2).svg"
               alt=""
-              className={`w-[19px] h-[21px] mr-[25px] ${
-               pathname === "/register-for" ||
-               pathname === "/my-account"
+              className={`w-[19px] h-[21px] mr-[25px] ${pathname === "/register-for" ||
+                  pathname === "/my-account"
                   ? "block"
                   : "hidden"
-              } `}
+                } `}
               onClick={() => router.push("/my-account")}
             />
             {drawer ? (
@@ -185,36 +185,32 @@ export default function TopHeader() {
                 />
                 <div className="flex xl:ml-[80px] ml-[20px] xl:mr-[80px] mr-[20px] w-[100%] justify-between">
                   <p
-                    className={`${
-                      pathname === "/" ? "text-[#D3A86B]" : "text-white"
-                    } font-semibold cursor-pointer hover:text-[#D3A86B] `}
+                    className={`${pathname === "/" ? "text-[#D3A86B]" : "text-white"
+                      } font-semibold cursor-pointer hover:text-[#D3A86B] `}
                     onClick={() => router.push("/")}
                   >
                     Domov
                   </p>
                   <p
-                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                      pathname === "/about-comany"
+                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/about-comany"
                         ? "text-[#D3A86B]"
                         : "text-white"
-                    }`}
+                      }`}
                     onClick={() => router.push("/about-comany")}
                   >
                     O spoločnosti
                   </p>
                   <p
-                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                      pathname === "/about" ? "text-[#D3A86B]" : "text-white"
-                    }`}
+                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/about" ? "text-[#D3A86B]" : "text-white"
+                      }`}
                     onClick={() => router.push("/about")}
                   >
                     O dražbách
                   </p>
 
                   <p
-                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                      pathname === "/calendar" ? "text-[#D3A86B]" : "text-white"
-                    }`}
+                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/calendar" ? "text-[#D3A86B]" : "text-white"
+                      }`}
                     onClick={() => router.push("/calendar")}
                   >
                     Dražobný kalendár
@@ -264,57 +260,56 @@ export default function TopHeader() {
                     )}
                   </div>
                   <p
-                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${
-                      pathname === "/contact" ? "text-[#D3A86B]" : "text-white"
-                    }`}
+                    className={`font-semibold cursor-pointer hover:text-[#D3A86B] ${pathname === "/contact" ? "text-[#D3A86B]" : "text-white"
+                      }`}
                     onClick={() => router.push("/contact")}
                   >
                     Kontakt
                   </p>
                 </div>
                 {(
-              <div className="flex items-center w-[400px]">
-                <img src="/group-165.svg" alt="" />
-                <p className="font-semibold ml-[11px] cursor-pointer">
-                  {!session?.user?.accessToken ? (
-                    <span
-                      className="hover:text-[#D3A86B] text-white"
-                      onClick={() => openModal()}
-                    >
-                      Prihlásenie
-                    </span>
-                  ) : (
-                    <div className="flex gap-4 items-center">
-                      <span
-                        className="hover:text-[#D3A86B] text-white"
-                        onClick={() => signOut({ callbackUrl: "/" })}
-                      >
-                        Odhlásiť
-                      </span>
-
-                      <div className="flex w-[150px]">
-                        <img src="/Vector (2).svg" alt="" />
-                        <p
-                          className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
-                            }`}
-                          onClick={() => router.push("/my-account")}
+                  <div className="flex items-center w-[400px]">
+                    <img src="/group-165.svg" alt="" />
+                    <p className="font-semibold ml-[11px] cursor-pointer">
+                      {!session?.user?.accessToken ? (
+                        <span
+                          className="hover:text-[#D3A86B] text-white"
+                          onClick={() => openModal()}
                         >
-                          Môj účet
-                        </p>
-                      </div>
-                    </div>
-                  )}
-                  {!session?.user?.accessToken && (
-                    <span
-                      className="hover:text-[#D3A86B] ml-3 text-white"
-                      onClick={() => openModalRegister()}
-                    >
-                      Registrácia
-                    </span>
-                  )}
-                </p>
-              </div>
-            )}
+                          Prihlásenie
+                        </span>
+                      ) : (
+                        <div className="flex gap-4 items-center">
+                          <span
+                            className="hover:text-[#D3A86B] text-white"
+                            onClick={() => signOut({ callbackUrl: "/" })}
+                          >
+                            Odhlásiť
+                          </span>
+
+                          <div className="flex w-[150px]">
+                            <img src="/Vector (2).svg" alt="" />
+                            <p
+                              className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
+                                }`}
+                              onClick={() => router.push("/my-account")}
+                            >
+                              Môj účet
+                            </p>
+                          </div>
+                        </div>
+                      )}
+                      {!session?.user?.accessToken && (
+                        <span
+                          className="hover:text-[#D3A86B] ml-3 text-white"
+                          onClick={() => openModalRegister()}
+                        >
+                          Registrácia
+                        </span>
+                      )}
+                    </p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

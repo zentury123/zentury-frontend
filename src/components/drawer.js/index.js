@@ -60,6 +60,10 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
   };
 
 
+  async function navigateRoute(route) {
+    router.push(route)
+    toggleDrawer()
+  }
 
   return (
     <div className="flex">
@@ -77,7 +81,7 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             <p
               className={`${pathname === "/" ? "!text-[#D3A86B]" : "text-white"
                 } font-semibold cursor-pointer `}
-              onClick={() => router.push("/")}
+              onClick={() => navigateRoute("/")}
             >
               Domov
             </p>
@@ -86,7 +90,7 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             <p
               className={`font-semibold cursor-pointer ${pathname === "/about-comany" ? "!text-[#D3A86B]" : "text-white"
                 }`}
-              onClick={() => router.push("/about-comany")}
+              onClick={() => navigateRoute("/about-comany")}
             >
               O spoločnosti
             </p>
@@ -95,13 +99,13 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             <p
               className={`font-semibold cursor-pointer ${pathname === "/about" ? "!text-[#D3A86B]" : "text-white"
                 }`}
-              onClick={() => router.push("/about")}
+              onClick={() => navigateRoute("/about")}
             >
               O dražbách
             </p>
           </div>
           <div
-            onClick={() => router.push("/calendar")}
+            onClick={() => navigateRoute("/calendar")}
             className={`font-semibold ${pathname === "/calendar" ? "!text-[#D3A86B]" : "text-white"
               }  flex justify-end mt-[23px] text-white`}
           >
@@ -118,14 +122,14 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
                 />
                 <div className="w-[305px] bg-[black] p-[17px] rounded-[7px] absolute top-[65px]">
                   <p
-                    onClick={() => router.push("/voluntry")}
+                    onClick={() => navigateRoute("/voluntry")}
                     className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B]"
                   >
                     Dobrovolné dražba
                   </p>
 
                   <p
-                    onClick={() => router.push("/direct-sale")}
+                    onClick={() => navigateRoute("/direct-sale")}
                     className="cursor-pointer text-[#F9FCFF] hover:text-[#D3A86B] mt-[15px]"
                   >
                     Priamy predaj
@@ -151,7 +155,7 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
             <p
               className={`font-semibold cursor-pointer ${pathname === "/contact" ? "!text-[#D3A86B]" : "text-white"
                 }`}
-              onClick={() => router.push("/contact")}
+              onClick={() => navigateRoute("/contact")}
             >
               Kontakt
             </p>
@@ -199,7 +203,7 @@ const Drawer = ({ toggleDrawer, drawer, loginOpen }) => {
                 <p
                   className={`font-semibold cursor-pointer hover:text-[#D3A86B] ml-[11px] ${pathname === "/my-account" ? "text-[#D3A86B]" : "text-white"
                     }`}
-                  onClick={() => router.push("/my-account")}
+                  onClick={() => navigateRoute("/my-account")}
                 >
                   Môj účet
                 </p>
