@@ -16,22 +16,6 @@ export default function Voluntry() {
 
   const router = useRouter();
 
-
-
-
-
-
-
-  // useEffect(() => {
-  //   getRealStates(
-  //     keywords,
-  //     priceRange,
-  //     region,
-  //     propertyType,
-  //     auctionType,
-  //     pageNumber
-  //   );
-  // }, [pageNumber, keywords, priceRange, propertyType, auctionType]);
   return (
     <div className="bg-white min-h-[100vh]">
 
